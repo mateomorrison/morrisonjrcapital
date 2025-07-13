@@ -13,21 +13,84 @@ export default function Home() {
 
 Drawing on a family legacy of over a century, the firm invests at the intersection of artificial intelligence, quantitative finance, and cybersecurity.</p>
       
-      <p>Active Investments:</p>
-      <ul className="list-disc pl-6">
-        <li>
-          <p>youOS: a personal AI sanctuary for clarity, gentle growth, and human agency</p>
-        </li>
-        <li>
-          <p>Fangoo: a ecommerce platform for emerging markets</p>
-        </li>
-        <li>
-          <p>Quantris Global: an AI consulting firm for mid to large enterprise</p>
-        </li>
-        <li>
-          <p>Graphvote: a tool for politicians and governments to monitor digital engagement</p>
-        </li>
-      </ul>
+      <h2>Active Investments</h2>
+      <div className="investments-grid">
+        <div className="investment-card">
+          <h3>youOS</h3>
+          <p className="description">A personal AI sanctuary for clarity, gentle growth, and human agency</p>
+          <div className="metrics">
+            <div className="metric">
+              <span className="label">Revenue:</span>
+              <span className="value">N/A</span>
+            </div>
+            <div className="metric">
+              <span className="label">Valuation:</span>
+              <span className="value">N/A</span>
+            </div>
+            <div className="metric">
+              <span className="label">Stage:</span>
+              <span className="value">Pre-seed</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="investment-card">
+          <h3>Fangoo</h3>
+          <p className="description">A ecommerce platform for emerging markets</p>
+          <div className="metrics">
+            <div className="metric">
+              <span className="label">Revenue:</span>
+              <span className="value">N/A</span>
+            </div>
+            <div className="metric">
+              <span className="label">Valuation:</span>
+              <span className="value">N/A</span>
+            </div>
+            <div className="metric">
+              <span className="label">Stage:</span>
+              <span className="value">Pre-seed</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="investment-card">
+          <h3>Quantris Global</h3>
+          <p className="description">An AI consulting firm for mid to large enterprise</p>
+          <div className="metrics">
+            <div className="metric">
+              <span className="label">Revenue:</span>
+              <span className="value">N/A</span>
+            </div>
+            <div className="metric">
+              <span className="label">Valuation:</span>
+              <span className="value">N/A</span>
+            </div>
+            <div className="metric">
+              <span className="label">Stage:</span>
+              <span className="value">Pre-seed</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="investment-card">
+          <h3>Graphvote</h3>
+          <p className="description">A tool for politicians and governments to monitor digital engagement</p>
+          <div className="metrics">
+            <div className="metric">
+              <span className="label">Revenue:</span>
+              <span className="value">N/A</span>
+            </div>
+            <div className="metric">
+              <span className="label">Valuation:</span>
+              <span className="value">N/A</span>
+            </div>
+            <div className="metric">
+              <span className="label">Stage:</span>
+              <span className="value">Pre-seed</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <hr />
       <p>
         <a
