@@ -1,19 +1,23 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
     <div>
       <div className="logo-container">
-        <img 
+        <Image 
           src="/logo.jpg" 
           alt="Morrison Jr. Capital Logo" 
           className="logo"
+          width={120}
+          height={120}
         />
       </div>
       <h1>Morrison Jr. Capital</h1>
-      <p>Morrison Jr. Capital is a private investment firm focused on technology.
+      <p>We are a private investment firm focused on technology.
 
 Drawing on a family legacy of over a century, the firm invests at the intersection of artificial intelligence, quantitative finance, and cybersecurity.</p>
       
-      <h2>Active Investments</h2>
+      {/* <h2>Active Investments</h2>
       <div className="investments-grid">
         <div className="investment-card">
           <h3>youOS</h3>
@@ -108,7 +112,7 @@ Drawing on a family legacy of over a century, the firm invests at the intersecti
         >
           Instagram
         </a>
-      </p>
+      </p> */}
     </div>
   );
 }
