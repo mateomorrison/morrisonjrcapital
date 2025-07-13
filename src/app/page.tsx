@@ -25,7 +25,7 @@ Drawing on a family legacy of over a century, the firm invests at the intersecti
       <p>
         <a
           href="mailto:contact@morrisonjrgroup.com"
-          className="underline text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
+          className="underline focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
         >
           contact@morrisonjrgroup.com
         </a>
@@ -34,7 +34,7 @@ Drawing on a family legacy of over a century, the firm invests at the intersecti
           href="https://www.instagram.com/morrisonjrcapital/"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
+          className="underline focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
         >
           Instagram
         </a>
