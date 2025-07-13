@@ -21,11 +21,11 @@ Drawing on a family legacy of over a century, the firm invests at the intersecti
           <div className="metrics">
             <div className="metric">
               <span className="label">Revenue:</span>
-              <span className="value">N/A</span>
+              <span className="value">$ N/A</span>
             </div>
             <div className="metric">
               <span className="label">Valuation:</span>
-              <span className="value">N/A</span>
+              <span className="value">$ N/A</span>
             </div>
             <div className="metric">
               <span className="label">Stage:</span>
@@ -40,11 +40,11 @@ Drawing on a family legacy of over a century, the firm invests at the intersecti
           <div className="metrics">
             <div className="metric">
               <span className="label">Revenue:</span>
-              <span className="value">N/A</span>
+              <span className="value">$ N/A</span>
             </div>
             <div className="metric">
               <span className="label">Valuation:</span>
-              <span className="value">N/A</span>
+              <span className="value">$ N/A</span>
             </div>
             <div className="metric">
               <span className="label">Stage:</span>
@@ -59,11 +59,11 @@ Drawing on a family legacy of over a century, the firm invests at the intersecti
           <div className="metrics">
             <div className="metric">
               <span className="label">Revenue:</span>
-              <span className="value">N/A</span>
+              <span className="value">$ N/A</span>
             </div>
             <div className="metric">
               <span className="label">Valuation:</span>
-              <span className="value">N/A</span>
+              <span className="value">$ N/A</span>
             </div>
             <div className="metric">
               <span className="label">Stage:</span>
@@ -78,11 +78,11 @@ Drawing on a family legacy of over a century, the firm invests at the intersecti
           <div className="metrics">
             <div className="metric">
               <span className="label">Revenue:</span>
-              <span className="value">N/A</span>
+              <span className="value">$ N/A</span>
             </div>
             <div className="metric">
               <span className="label">Valuation:</span>
-              <span className="value">N/A</span>
+              <span className="value">$ N/A</span>
             </div>
             <div className="metric">
               <span className="label">Stage:</span>
