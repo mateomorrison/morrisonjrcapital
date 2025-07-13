@@ -35,7 +35,7 @@ Drawing on a family legacy of over a century, the firm invests at the intersecti
         </div>
 
         <div className="investment-card">
-          <h3>Fangoo</h3>
+          <h3>fangoo</h3>
           <p className="description">A ecommerce platform for emerging markets</p>
           <div className="metrics">
             <div className="metric">
