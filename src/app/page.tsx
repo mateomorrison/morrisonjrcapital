@@ -1,7 +1,14 @@
 export default function Home() {
   return (
     <div>
-      <p>Morrison Jr. Capital</p>
+      <div className="logo-container">
+        <img 
+          src="/logo.jpg" 
+          alt="Morrison Jr. Capital Logo" 
+          className="logo"
+        />
+      </div>
+      <h1>Morrison Jr. Capital</h1>
       <p>Morrison Jr. Capital is a private investment firm focused on technology.
 
 Drawing on a family legacy of over a century, the firm invests at the intersection of artificial intelligence, quantitative finance, and cybersecurity.</p>
