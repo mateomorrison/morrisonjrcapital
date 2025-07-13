@@ -39,12 +39,12 @@ hr {
 }
 
 a {
-  color: #60a5fa;
+  color: #ffffff;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #93c5fd;
+  color: #ffffff;
 }
 
 /* Logo styling */
@@ -58,7 +58,7 @@ a:hover {
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #374151;
+  border: 2px solid #ffffff;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
@@ -71,8 +71,8 @@ a:hover {
 }
 
 .investment-card {
-  background: #1f2937;
-  border: 1px solid #374151;
+  background: #000000;
+  border: 1px solid #ffffff;
   border-radius: 8px;
   padding: 1.5rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -91,7 +91,7 @@ a:hover {
 }
 
 .investment-card .description {
-  color: #d1d5db;
+  color: #ffffff;
   margin-bottom: 1rem;
   line-height: 1.5;
 }
