@@ -11,27 +11,38 @@ export default function Home() {
           width={120}
           height={120}
         />
+      {/* <h1>Morrison Jr. Capital</h1> */}
       </div>
-      <h1>Morrison Jr. Capital</h1>
       <main>
-        <p className="mb-5 text-[1.1em]">
-          Morrison Jr. Capital was founded by <strong className="font-semibold">Mateo Morrison Jr.</strong> to be the synthesis of a unique journey—one that began with hands-on entrepreneurship and progressed through the core of the global financial technology infrastructure.
-        </p>
-        <p className="mb-5 text-[1.1em]">
-          The journey began in the Dominican Republic, where early entrepreneurial experience instilled a foundational belief in applying technology to solve complex, real-world business problems. This path led to developing deep technical expertise inside elite global investment firms, with a focus on the sophisticated systems that power modern finance.
-        </p>
-        <p className="mb-5 text-[1.1em]">
-          Morrison Jr. Capital is the culmination of this experience. It is a private firm that channels this blend of entrepreneurial grit and deep institutional knowledge into its own <strong className="font-semibold">proprietary investments</strong>. Guided by a 100-year family legacy and a forward-looking perspective, the firm invests with high conviction at the intersection of <strong className="font-semibold">artificial intelligence, quantitative systems, and cybersecurity</strong>.
-        </p>
+        <section>
+          <h2 className="text-2xl font-bold mb-4">About Us</h2>
+          <p className="mb-5 text-[1.1em]">
+            Morrison Jr. Capital was founded in 2025 as the synthesis of a unique journey—one that began with hands-on entrepreneurship and evolved through the core of global financial technology infrastructure.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold mb-4">Our Journey</h2>
+          <p className="mb-5 text-[1.1em]">
+            The journey traces its roots to Spain and Jamaica, with early family heritage in the 1920s, and truly began in the Dominican Republic, where formative entrepreneurial experience instilled a foundational belief in applying technology to solve complex, real-world business problems. This path has since continued across the United States, with main operations now based in New York. Along the way, deep technical expertise was developed inside elite global investment firms, with a focus on the sophisticated systems that power modern finance.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold mb-4">Investment Focus</h2>
+          <p className="mb-5 text-[1.1em]">
+            Morrison Jr. Capital represents the culmination of this distinctive journey, combining entrepreneurial drive with deep institutional expertise. As a private firm, we leverage this blend of experience to pursue our own <strong className="font-semibold">proprietary investments</strong>. Guided by a century-long family legacy and a forward-thinking approach, Morrison Jr. Capital invests with conviction at the intersection of <strong className="font-semibold">artificial intelligence, quantitative systems, and cybersecurity</strong>. <br /><br /> While we are actively engaged in building businesses, this does not imply that we are currently making investments.
+          </p>
+        </section>
       </main>
 
       <hr className="my-10 border-t border-gray-700" />
 
       
-      <h2>Active Investments</h2>
+      <h2>Portfolio</h2>
       <div className="investments-grid">
         <a
-          href="https://youos-personalai.vercel.app/"
+          href="https://youosapp.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="investment-card block hover:shadow-lg transition-shadow duration-200 cursor-pointer no-underline bg-black text-white p-6 rounded-lg border border-gray-800"
@@ -57,6 +68,22 @@ export default function Home() {
           </div>
         </a>
       </div>
+
+      <footer className="mt-16 pt-8 border-t border-gray-700">
+        <div className="text-center mb-4">
+          <p className="text-sm text-gray-400">
+            Morrison Jr. Group, LLC dBa Morrison Jr. Capital
+          </p>
+          <p className="text-sm text-gray-400 mt-1">
+            © 2025 All rights reserved
+          </p>
+        </div>
+        <div className="text-xs text-gray-500 text-center">
+          <p>
+            The information provided on this website does not constitute an offer to, or solicitation of, any potential clients or investors for the provision by Morrison Jr. Capital of investment management, advisory, or any other related services. No material on this website is, or should be construed as, investment advice. Nothing on this website constitutes an offer to sell, or a solicitation of an offer to buy, any security or other financial instrument.
+          </p>
+        </div>
+      </footer>
 
     </div>
   );
