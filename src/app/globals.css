@@ -11,6 +11,7 @@ body {
   margin: 0 auto;
   padding: 2rem;
   min-height: 100vh;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 h1, h2, h3 {

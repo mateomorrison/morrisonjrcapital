@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
   const imageRef = useRef<HTMLDivElement>(null);
-  const [ripples, setRipples] = useState([]);
+  const [ripples, setRipples] = useState<{id: number, x: number, y: number}[]>([]);
 
-  const handleTouch = (e) => {
+  const handleTouch = (e: React.TouchEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.touches[0].clientX - rect.left;
     const y = e.touches[0].clientY - rect.top;
