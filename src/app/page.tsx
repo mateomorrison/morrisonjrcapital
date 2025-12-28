@@ -48,7 +48,7 @@ export default function Home() {
               className="dramatic-image"
             />
           </div>
-          <div style={{ height: '50vh' }}></div> {/* Spacer for more scroll */}
+          <div style={{ height: '25vh' }}></div> {/* Spacer for more scroll */}
         </section>
 
       </main>
