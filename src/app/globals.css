@@ -59,6 +59,7 @@ a:hover {
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  filter: grayscale(100%);
 }
 
 /* Investment cards styling */
@@ -133,4 +134,20 @@ a:hover {
   body {
     padding: 1rem;
   }
+}
+
+.dramatic-image {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  transition: transform 0.1s ease;
+}
+
+.image-container {
+  margin: 2rem 0;
+  overflow: hidden;
+  position: relative;
+  transform-origin: center;
 }

@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   description: "A private investment firm focused on technology, investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity.",
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
