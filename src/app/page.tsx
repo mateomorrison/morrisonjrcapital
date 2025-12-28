@@ -15,7 +15,7 @@ export default function Home() {
       </div>
       <main>
         <section>
-          <h2 className="text-2xl font-bold mb-4">About Us</h2>
+          {/* <h2 className="text-2xl font-bold mb-4">About Us</h2> */}
           <p className="mb-5 text-[1.1em]">
             Morrison Jr. Group was founded in 2025 as the synthesis of a unique journey—one that began with hands-on entrepreneurship and evolved through the core of global financial technology infrastructure.
           </p>
