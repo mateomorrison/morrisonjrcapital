@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Morrison Jr. Capital",
+  title: "MORRISON JR GROUP",
   description: "A private investment firm focused on technology, investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity.",
+  icons: {
+    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="black"/></svg>',
+  },
 };
 
 export const viewport = {

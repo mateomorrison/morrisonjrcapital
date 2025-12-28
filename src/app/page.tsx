@@ -1,17 +1,29 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
   const imageRef = useRef<HTMLDivElement>(null);
+  const [ripples, setRipples] = useState([]);
+
+  const handleTouch = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.touches[0].clientX - rect.left;
+    const y = e.touches[0].clientY - rect.top;
+    const newRipple = { id: Date.now(), x, y };
+    setRipples(prev => [...prev, newRipple]);
+    setTimeout(() => setRipples(prev => prev.filter(r => r.id !== newRipple.id)), 1500);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       if (imageRef.current && window.innerWidth <= 768) {
         const scrollY = window.scrollY;
-        const scale = 1 + scrollY / 800; // Adjust divisor for speed
-        imageRef.current.style.transform = `scale(${Math.min(scale, 2.5)})`; // Max scale for dramatic effect
+        // Start scaling after 100px scroll for delay
+        const effectiveScroll = Math.max(0, scrollY - 100);
+        const scale = 1 + effectiveScroll / 1500; // Slower scaling
+        imageRef.current.style.transform = `scale(${Math.min(scale, 5)})`; // Much larger max scale
       }
     };
 
@@ -20,7 +32,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div onTouchStart={handleTouch} style={{ position: 'relative', overflow: 'hidden' }}>
+      {ripples.map(ripple => (
+        <div
+          key={ripple.id}
+          className="ripple"
+          style={{ left: ripple.x - 50, top: ripple.y - 50 }}
+        />
+      ))}
       <div className="logo-container">
         <Image 
           src="/logo.jpg" 
@@ -35,22 +54,23 @@ export default function Home() {
         <section>
           {/* <h2 className="text-2xl font-bold mb-4">About Us</h2> */}
           <p className="mb-5 text-[1.1em]">
-            Morrison Jr. Group was founded in 2025 as the synthesis of a unique journey—one that began with hands-on entrepreneurship and evolved through the core of global financial technology infrastructure.
+            Morrison Jr. Group marks the continuation of a multi-generational family legacy originating in the Dominican Republic. Founded in 2025, it expands upon a journey that began with hands-on entrepreneurship and has evolved through the transformative core of financial technology, bridging traditional roots with global innovation.
           </p>
           <div className="image-container" ref={imageRef}>
             <Image
-              src="/pexels-vlada-karpovich-4451713.jpg"
+              src="/pexels-skyriusmarketing-2224861.jpg"
               alt="Futuristic financial technology landscape"
               width={800}
               height={600}
               className="dramatic-image"
             />
           </div>
+          <div style={{ height: '200vh' }}></div> {/* Spacer for more scroll */}
         </section>
 
       </main>
 
-      <hr className="my-10 border-t border-gray-700" />
+      {/* <hr className="my-10 border-t border-gray-700" /> */}
 
     
 
@@ -60,7 +80,18 @@ export default function Home() {
             Morrison Jr. Group, LLC
           </p>
           <p className="text-sm text-gray-400 mt-1">
-            © 2025 All rights reserved
+            The Trump Building,<br />
+            40 Wall Street,<br />
+            New York
+          </p>
+          <p className="text-sm text-gray-400 mt-1">
+            media@morrisonjrgroup.com
+          </p>
+          <p className="text-sm text-gray-400 mt-1">
+            www.morrisonjrgroup.com
+          </p>
+          <p className="text-sm text-gray-400 mt-1">
+            © 2026 All rights reserved
           </p>
         </div>
       </footer>
