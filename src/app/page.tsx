@@ -37,7 +37,7 @@ export default function Home() {
         <section>
           {/* <h2 className="text-2xl font-bold mb-4">About Us</h2> */}
           <p className="mb-5 text-[1.1em]">
-            <b>Morrison Jr. Group</b> marks the continuation of a multi-generational family legacy originating in the Dominican Republic. Founded in 2025, it expands upon a journey that began with hands-on entrepreneurship and has evolved through the transformative core of financial technology, bridging traditional roots with global innovation.
+            Founded by <b>Mateo Morrison Jr</b>, <b>Morrison Jr Group</b> represents the next chapter in a multi-generational family legacy rooted in the Dominican Republic. Established in 2025 under <b>Mateo Morrison Jr</b>'s leadership, <b>Morrison Jr</b> expands upon a journey that began with hands-on entrepreneurship and has evolved through the transformative core of financial technology, bridging traditional roots with global innovation.
           </p>
           <div className="image-container" ref={imageRef}>
             <Image

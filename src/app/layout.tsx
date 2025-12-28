@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "MORRISON JR GROUP",
-  description: "A private investment firm focused on technology, investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity.",
+  description: "Founded by Mateo Morrison Jr, Morrison Jr Group is a private investment firm focused on technology, investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity. A Dominican Republic family legacy in financial technology.",
   icons: {
     icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="black"/></svg>',
   },
