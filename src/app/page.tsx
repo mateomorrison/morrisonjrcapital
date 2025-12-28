@@ -1,29 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function Home() {
   const imageRef = useRef<HTMLDivElement>(null);
-  const [ripples, setRipples] = useState<{id: number, x: number, y: number}[]>([]);
-
-  const handleTouch = (e: React.TouchEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.touches[0].clientX - rect.left;
-    const y = e.touches[0].clientY - rect.top;
-    const newRipple = { id: Date.now(), x, y };
-    setRipples(prev => [...prev, newRipple]);
-    setTimeout(() => setRipples(prev => prev.filter(r => r.id !== newRipple.id)), 2000);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
       if (imageRef.current && window.innerWidth <= 768) {
         const scrollY = window.scrollY;
-        // Start scaling after 100px scroll for delay
-        const effectiveScroll = Math.max(0, scrollY - 100);
-        const scale = 1 + effectiveScroll / 1500; // Slower scaling
-        imageRef.current.style.transform = `scale(${Math.min(scale, 5)})`; // Much larger max scale
+        // Start scaling after 200px scroll for more delay
+        const effectiveScroll = Math.max(0, scrollY - 200);
+        const scale = 1 + effectiveScroll / 2000; // Even slower scaling
+        imageRef.current.style.transform = `scale(${Math.min(scale, 4)})`; // Slightly less max scale for elegance
       }
     };
 
@@ -32,14 +22,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div onTouchStart={handleTouch} style={{ position: 'relative', overflow: 'hidden' }}>
-      {ripples.map(ripple => (
-        <div
-          key={ripple.id}
-          className="ripple"
-          style={{ left: ripple.x - 50, top: ripple.y - 50 }}
-        />
-      ))}
+    <div>
       <div className="logo-container">
         <Image 
           src="/logo.jpg" 
@@ -65,7 +48,7 @@ export default function Home() {
               className="dramatic-image"
             />
           </div>
-          <div style={{ height: '200vh' }}></div> {/* Spacer for more scroll */}
+          <div style={{ height: '50vh' }}></div> {/* Spacer for more scroll */}
         </section>
 
       </main>

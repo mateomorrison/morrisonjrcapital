@@ -141,10 +141,11 @@ a:hover {
   width: 100%;
   height: auto;
   filter: grayscale(100%);
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease-out; /* Smoother and slower transition */
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: transform 0.5s ease-out; /* Even smoother transition */
   will-change: transform; /* Performance optimization */
+  backdrop-filter: blur(2px); /* Subtle glass effect */
 }
 
 .image-container {
@@ -152,28 +153,4 @@ a:hover {
   overflow: hidden;
   position: relative;
   transform-origin: center;
-}
-
-.ripple {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
-  animation: classyGlow 2s ease-out forwards;
-  pointer-events: none;
-}
-
-@keyframes classyGlow {
-  0% {
-    transform: scale(0);
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 0.4;
-  }
-  100% {
-    transform: scale(8);
-    opacity: 0;
-  }
 }
