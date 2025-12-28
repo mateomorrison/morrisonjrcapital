@@ -13,7 +13,7 @@ export default function Home() {
     const y = e.touches[0].clientY - rect.top;
     const newRipple = { id: Date.now(), x, y };
     setRipples(prev => [...prev, newRipple]);
-    setTimeout(() => setRipples(prev => prev.filter(r => r.id !== newRipple.id)), 1500);
+    setTimeout(() => setRipples(prev => prev.filter(r => r.id !== newRipple.id)), 2000);
   };
 
   useEffect(() => {
