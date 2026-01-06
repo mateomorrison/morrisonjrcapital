@@ -39,6 +39,15 @@ export default function Home() {
           <p className="mb-5 text-[1.1em]">
           <b>Morrison Jr Group</b> represents the next chapter in a multi-generational family legacy rooted in the Dominican Republic. Established in 2025, <b>Morrison Jr Group</b> expands upon a journey that began with hands-on entrepreneurship and has evolved through the transformative core of financial technology, bridging traditional roots with global innovation.
           </p>
+          
+          <div className="companies-section mb-8">
+            <div className="text-[0.95em] text-gray-400 space-y-2">
+              <div><a href="https://www.youosapp.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">youos</a></div>
+              <div><a href="https://www.fangoo.do" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">fangoo</a></div>
+              <div><a href="https://www.mule.law" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">mulé law x mm legal</a></div>
+            </div>
+          </div>
+
           <div className="image-container" ref={imageRef}>
             <Image
               src="/pexels-skyriusmarketing-2224861.jpg"
@@ -64,7 +73,13 @@ export default function Home() {
           <p className="text-sm text-gray-400 mt-1">
             The Trump Building,<br />
             40 Wall Street,<br />
+            32nd Floor<br />
             New York
+          </p>
+          <p className="text-sm text-gray-400 mt-2">
+            <a href="https://maps.app.goo.gl/rqJlF7msMWKpw3PEZ" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline">
+              View on Google Maps
+            </a>
           </p>
           <p className="text-sm text-gray-400 mt-1">
             media@morrisonjrgroup.com
