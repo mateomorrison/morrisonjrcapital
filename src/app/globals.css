@@ -66,9 +66,13 @@ a:hover {
 /* Investment cards styling */
 .investments-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.5rem;
   margin-bottom: 2rem;
+}
+
+.investments-grid .company-card {
+  min-width: 0;
 }
 
 .investment-card {
@@ -82,6 +86,60 @@ a:hover {
 .investment-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.company-card {
+  aspect-ratio: 6 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.company-card-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.company-title {
+  text-align: right;
+  font-size: 1em;
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: auto;
+}
+
+.company-description {
+  text-align: center;
+  font-size: 0.85em;
+  color: #d1d5db;
+  line-height: 1.4;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.company-domain {
+  text-align: left;
+  font-size: 0.75em;
+  color: #9ca3af;
+  margin-top: auto;
+}
+
+.company-card a {
+  text-decoration: none;
+}
+
+.no-underline {
+  text-decoration: none !important;
 }
 
 .investment-card h3 {
