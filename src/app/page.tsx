@@ -39,33 +39,6 @@ export default function Home() {
           <p className="mb-5 text-[1.1em]">
           MJR represents the next chapter in a multi-generational family legacy rooted in the Dominican Republic. Established in 2025, MJR expands upon a journey that began with hands-on entrepreneurship and has evolved through the transformative core of financial technology, bridging traditional roots with global innovation.
           </p>
-          
-          <div className="companies-section mb-8">
-            <h2 className="text-xl font-semibold mb-4 text-white">companies</h2>
-            <div className="investments-grid">
-              <a href="https://www.youosapp.com" target="_blank" rel="noopener noreferrer" className="investment-card company-card no-underline">
-                <div className="company-card-content">
-                  <div className="company-title">youOS</div>
-                  <div className="company-description">A minimal, intelligent system that quietly organizes your essentials.</div>
-                  <div className="company-domain">www.youosapp.com</div>
-                </div>
-              </a>
-              <a href="https://www.fangoo.do" target="_blank" rel="noopener noreferrer" className="investment-card company-card no-underline">
-                <div className="company-card-content">
-                  <div className="company-title">fangoo</div>
-                  <div className="company-description">An e-commerce platform connecting local markets to global customers with integrated payments and shipping.</div>
-                  <div className="company-domain">www.fangoo.do</div>
-                </div>
-              </a>
-              <a href="https://www.mule.law" target="_blank" rel="noopener noreferrer" className="investment-card company-card no-underline">
-                <div className="company-card-content">
-                  <div className="company-title">Mulé Law</div>
-                  <div className="company-description">A NYC based legal strategic partner. Pushing the limits on legal matters.</div>
-                  <div className="company-domain">www.mule.law</div>
-                </div>
-              </a>
-            </div>
-          </div>
 
           <div className="image-container" ref={imageRef}>
             <Image
