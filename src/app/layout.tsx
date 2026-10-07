@@ -13,23 +13,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.morrisonjrgroup.com'),
-  title: "MORRISON JR GROUP | MATEO MORRISON JR",
-  description: "Founded by Mateo Morrison Jr, Morrison Jr Group is a private investment firm focused on technology, investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity. A Dominican Republic family legacy in financial technology.",
-  keywords: "Mateo Morrison Jr, Morrison Jr, Morrison Jr Group, Dominican Republic, financial technology, investment firm, AI, quantitative finance, cybersecurity",
+  metadataBase: new URL('https://www.morrisonjr.com'),
+  title: "MORRISON JR | MATEO MORRISON JR",
+  description: "Founded by Mateo Morrison Jr, Morrison Jr is a private investment firm focused on technology, investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity. A Dominican Republic family legacy in financial technology.",
+  keywords: "Mateo Morrison Jr, Morrison Jr, Morrison Jr, Dominican Republic, financial technology, investment firm, AI, quantitative finance, cybersecurity",
   authors: [{ name: "Mateo Morrison Jr" }],
   robots: "index, follow",
   openGraph: {
-    title: "MORRISON JR GROUP | Mateo Morrison Jr",
-    description: "Founded by Mateo Morrison Jr, Morrison Jr Group represents a Dominican Republic family legacy in financial technology and global innovation.",
-    url: "https://www.morrisonjrgroup.com",
-    siteName: "Morrison Jr Group",
+    title: "MORRISON JR | Mateo Morrison Jr",
+    description: "Founded by Mateo Morrison Jr, Morrison Jr represents a Dominican Republic family legacy in financial technology and global innovation.",
+    url: "https://www.morrisonjr.com",
+    siteName: "Morrison Jr",
     images: [
       {
         url: "/logo.jpg",
         width: 120,
         height: 120,
-        alt: "Morrison Jr Group Logo",
+        alt: "Morrison Jr Logo",
       },
     ],
     locale: "en_US",
@@ -37,15 +37,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MORRISON JR GROUP | Mateo Morrison Jr",
-    description: "Founded by Mateo Morrison Jr, Morrison Jr Group is a Dominican Republic family legacy in financial technology.",
+    title: "MORRISON JR | Mateo Morrison Jr",
+    description: "Founded by Mateo Morrison Jr, Morrison Jr is a Dominican Republic family legacy in financial technology.",
     images: ["/logo.jpg"],
   },
   icons: {
     icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="black"/></svg>',
   },
   alternates: {
-    canonical: "https://wwww.morrisonjrgroup.com",
+    canonical: "https://wwww.morrisonjr.com",
   },
 };
 
@@ -68,18 +68,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Morrison Jr Group",
+              "name": "Morrison Jr",
               "founder": {
                 "@type": "Person",
                 "name": "Mateo Morrison Jr"
               },
               "foundingDate": "2025",
               "description": "A private investment firm focused on technology, investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity.",
-              "url": "https://www.morrisonjrgroup.com",
-              "logo": "https://morrisonjrgroup.com/logo.jpg",
+              "url": "https://www.morrisonjr.com",
+              "logo": "https://morrisonjr.com/logo.jpg",
               "sameAs": [
-                "https://www.linkedin.com/company/morrisonjrgroup",
-                "https://twitter.com/morrisonjrgroup"
+                "https://www.linkedin.com/company/morrisonjr",
+                "https://twitter.com/morrisonjr"
               ],
               "address": {
                 "@type": "PostalAddress",
@@ -90,7 +90,7 @@ export default function RootLayout({
               "contactPoint": {
                 "@type": "ContactPoint",
                 "telephone": "",
-                "email": "media@morrisonjrgroup.com",
+                "email": "General@morrisonjr.com",
                 "contactType": "customer service"
               }
             })

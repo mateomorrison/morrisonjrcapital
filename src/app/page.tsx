@@ -60,7 +60,7 @@ export default function Home() {
       <footer className="mt-16 pt-8 border-t border-gray-700">
         <div className="text-center mb-4">
           <p className="text-sm text-gray-400">
-            Morrison Jr. Group, LLC
+            Morrison Jr, LLC
           </p>
           <p className="text-sm text-gray-400 mt-1">
             The Trump Building,<br />
@@ -69,10 +69,10 @@ export default function Home() {
             New York
           </p>
           <p className="text-sm text-gray-400 mt-1">
-            media@morrisonjrgroup.com
+            General@morrisonjr.com
           </p>
           <p className="text-sm text-gray-400 mt-1">
-            www.morrisonjrgroup.com
+            www.morrisonjr.com
           </p>
           <p className="text-sm text-gray-400 mt-1">
             © 2026 All rights reserved
