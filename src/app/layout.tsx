@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.morrisonjr.com'),
   title: "MORRISON JR | MATEO MORRISON JR",
-  description: "Founded by Mateo Morrison Jr, Morrison Jr is a private investment firm focused on technology, investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity. A Dominican Republic family legacy in financial technology.",
-  keywords: "Mateo Morrison Jr, Morrison Jr, Morrison Jr, Dominican Republic, financial technology, investment firm, AI, quantitative finance, cybersecurity",
+  description: "Founded by Mateo Morrison Jr, Morrison Jr is a private investment firm focused on technology, investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity.",
+  keywords: "Mateo Morrison Jr, Morrison Jr, Morrison Jr, financial technology, investment firm, AI, quantitative finance, cybersecurity",
   authors: [{ name: "Mateo Morrison Jr" }],
   robots: "index, follow",
   openGraph: {
     title: "MORRISON JR | Mateo Morrison Jr",
-    description: "Founded by Mateo Morrison Jr, Morrison Jr represents a Dominican Republic family legacy in financial technology and global innovation.",
+    description: "Founded by Mateo Morrison Jr, Morrison Jr in financial technology and global innovation.",
     url: "https://www.morrisonjr.com",
     siteName: "Morrison Jr",
     images: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "MORRISON JR | Mateo Morrison Jr",
-    description: "Founded by Mateo Morrison Jr, Morrison Jr is a Dominican Republic family legacy in financial technology.",
+    description: "Founded by Mateo Morrison Jr, Morrison Jr in financial technology.",
     images: ["/logo.jpg"],
   },
   icons: {
