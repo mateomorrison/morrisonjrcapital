@@ -2,36 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
-const LINE = "MJR represents the next chapter in a multi-generational family legacy rooted in the Dominican Republic.";
-
-const PARAS = [
-  "Established in 2025, MJR expands upon a journey that began with hands-on entrepreneurship and has evolved through the transformative core of financial technology.",
-  "Bridging traditional roots with global innovation.",
-];
-
-/** Splits a sentence into word spans; each word wipes from ghosted to solid
- *  as scroll progress passes its threshold. Works in every browser. */
-function RevealWords({ text, base }: { text: string; base: number }) {
-  const words = text.split(" ");
-  return (
-    <>
-      {words.map((w, i) => {
-        const delay = base + i / words.length;
-        return (
-          <span
-            key={`${base}-${i}`}
-            className="rw"
-            style={{ ["--rw-start" as string]: delay.toFixed(3) }}
-          >
-            {w}{" "}
-          </span>
-        );
-      })}
-    </>
-  );
-}
-
-export default function Home() {
+/** Apple-style scroll reveal: each [data-reveal] block progresses 0→1 with
+ *  easing as it travels through the lower viewport, driving
+ *  opacity, --p (gradient wipe) and a subtle rise. rAF-throttled. */
+function useScrollReveal() {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,17 +13,19 @@ export default function Home() {
     if (!root) return;
     let raf = 0;
 
+    const ease = (t: number) => 1 - Math.pow(1 - t, 3); // easeOutCubic, Apple-ish
+
     const update = () => {
       raf = 0;
       const vh = window.innerHeight;
-      const words = root.querySelectorAll<HTMLElement>(".rw");
-      words.forEach((el) => {
+      root.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
         const r = el.getBoundingClientRect();
-        const start = Number(el.dataset.rwStart ?? 0);
-        // word begins revealing as it crosses 85% of viewport, completes by 45%
-        const p = (vh * 0.85 - r.top) / (vh * (0.85 - 0.45) + r.height * 0.4);
-        const done = Math.max(0, Math.min(1, (p - start) / (1 - start)));
-        el.style.setProperty("--rw-p", done.toFixed(3));
+        // progress 0 when element top crosses 92% vh, 1 when top reaches 48% vh
+        const raw = (vh * 0.92 - r.top) / (vh * (0.92 - 0.48));
+        const delay = Number(el.dataset.revealDelay ?? 0);
+        // stagger: shift and rescale progress so delayed items start later but complete in same window
+        const p = ease(Math.max(0, Math.min(1, (raw - delay) / (1 - delay))));
+        el.style.setProperty("--p", p.toFixed(3));
       });
     };
 
@@ -66,38 +42,74 @@ export default function Home() {
     };
   }, []);
 
+  return rootRef;
+}
+
+export default function Home() {
+  const rootRef = useScrollReveal();
+
   return (
     <div ref={rootRef}>
-      {/* Hero: fills the first viewport, text sits low like a title card */}
+      {/* ─── Hero: Apple product page style — huge wordmark, tagline under ─── */}
       <section className="hero">
-        <h1 className="headline rw" data-rw-start="0">
-          MJR represents the next chapter in a multi-generational family legacy rooted in the Dominican Republic.
+        <h1 className="wordmark" data-reveal>
+          Morrison&nbsp;JR
         </h1>
+        <p className="tagline" data-reveal data-reveal-delay="0.35">
+          A Dominican Republic family legacy in financial technology.
+        </p>
+        <p className="scroll-cue" data-reveal data-reveal-delay="0.7">
+          Scroll to explore ↓
+        </p>
       </section>
 
-      <main>
-        <section className="body-copy">
-          <p>
-            <RevealWords text={PARAS[0]} base={0.15} />
-          </p>
-          <p className="after-gap">
-            <RevealWords text={PARAS[1]} base={0.4} />
-          </p>
-        </section>
-      </main>
+      {/* ─── Statement: large line-reveal paragraphs ─── */}
+      <section className="statement">
+        <p className="lede" data-reveal>
+          MJR represents the next chapter in a multi-generational family legacy
+          rooted in the Dominican Republic. Established in 2025, MJR expands
+          upon a journey that began with hands-on entrepreneurship and has
+          evolved through the transformative core of financial technology,
+          bridging traditional roots with global innovation.
+        </p>
 
+        <p className="lede" data-reveal>
+          Investing at the intersection of artificial intelligence, quantitative
+          finance, and cybersecurity.
+        </p>
+      </section>
+
+      {/* ─── Pillars: three cards, staggered ─── */}
+      <section className="pillars">
+        <div className="pillar" data-reveal>
+          <h2>Artificial Intelligence</h2>
+          <p>Applied intelligence that compounds across industries.</p>
+        </div>
+        <div className="pillar" data-reveal data-reveal-delay="0.15">
+          <h2>Quantitative Finance</h2>
+          <p>Systematic strategies built on rigorous research.</p>
+        </div>
+        <div className="pillar" data-reveal data-reveal-delay="0.3">
+          <h2>Cybersecurity</h2>
+          <p>Protecting the infrastructure of a digital legacy.</p>
+        </div>
+      </section>
+
+      {/* ─── Footer ─── */}
       <footer className="site-footer">
-        <div className="text-center mb-4">
-          <p className="text-sm text-gray-400">Morrison Jr, LLC</p>
-          <p className="text-sm text-gray-400 mt-1">
-            The Trump Building,<br />
-            40 Wall Street,<br />
-            32nd Floor<br />
+        <div className="footer-inner">
+          <p className="footer-brand">Morrison&nbsp;JR, LLC</p>
+          <p className="footer-line">
+            The Trump Building<br />
+            40 Wall Street, 32nd Floor<br />
             New York
           </p>
-          <p className="text-sm text-gray-400 mt-1">General@morrisonjr.com</p>
-          <p className="text-sm text-gray-400 mt-1">www.morrisonjr.com</p>
-          <p className="text-sm text-gray-400 mt-1">© 2026 All rights reserved</p>
+          <p className="footer-line">
+            <a href="mailto:General@morrisonjr.com">General@morrisonjr.com</a>
+            <br />
+            <a href="https://www.morrisonjr.com">www.morrisonjr.com</a>
+          </p>
+          <p className="footer-line dim">© 2026 All rights reserved</p>
         </div>
       </footer>
     </div>

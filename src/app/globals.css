@@ -2,237 +2,181 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ink: #f5f5f7; /* Apple's foreground white */
+  --muted: rgba(245, 245, 247, 0.12);
+  --bg: #000;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  line-height: 1.6;
-  color: #e5e5e5;
-  background-color: #000;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  min-height: 100vh;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-}
-
-h1, h2, h3 {
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #ffffff;
-}
-
-p {
-  margin-bottom: 1rem;
-  color: #d1d5db;
-}
-
-ul {
-  margin-bottom: 1.5rem;
-}
-
-li {
-  color: #d1d5db;
-}
-
-hr {
-  margin: 2rem 0;
-  border: none;
-  border-top: 1px solid #374151;
-}
-
-a {
-  color: #ffffff;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: #ffffff;
-}
-
-/* Logo styling */
-.logo-container {
-  text-align: left;
-  margin-bottom: 2rem;
-}
-
-.logo {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  filter: grayscale(100%);
-}
-
-/* Investment cards styling */
-.investments-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.investments-grid .company-card {
-  min-width: 0;
-}
-
-.investment-card {
-  background: #000000;
-  border: 1px solid #ffffff;
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.investment-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-}
-
-.company-card {
-  aspect-ratio: 6 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-}
-
-.company-card-content {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0;
-}
-
-.company-title {
-  text-align: right;
-  font-size: 1em;
-  color: #ffffff;
-  font-weight: 600;
-  margin-bottom: auto;
-}
-
-.company-description {
-  text-align: center;
-  font-size: 0.85em;
-  color: #d1d5db;
-  line-height: 1.4;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 0;
-}
-
-.company-domain {
-  text-align: left;
-  font-size: 0.75em;
-  color: #9ca3af;
-  margin-top: auto;
-}
-
-.company-card a {
-  text-decoration: none;
-}
-
-.no-underline {
-  text-decoration: none !important;
-}
-
-.investment-card h3 {
-  color: #ffffff;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-
-.investment-card .description {
-  color: #ffffff;
-  margin-bottom: 1rem;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   line-height: 1.5;
+  color: var(--ink);
+  background: var(--bg);
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-.metrics {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+/* ─── Scroll reveal driver: --p (0→1) set by JS on every [data-reveal] ─── */
+[data-reveal] {
+  opacity: calc(0.06 + 0.94 * var(--p, 0));
+  transform: translateY(calc((1 - var(--p, 0)) * 26px)) scale(calc(0.985 + var(--p, 0) * 0.015));
+  will-change: opacity, transform;
+}
+/* staggered children get delayed progress handled by data-reveal-delay in JS path */
+[data-reveal][data-reveal-delay] {
+  transition-delay: 0s; /* JS already staggers via raw offset; kept for safety */
 }
 
-.metric {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #374151;
-}
-
-.metric:last-child {
-  border-bottom: none;
-}
-
-.metric .label {
-  color: #9ca3af;
-  font-weight: 500;
-}
-
-.metric .value {
-  color: #ffffff;
-  font-weight: 600;
-}
-
-/* ─── Scroll-driven word reveal (rAF-driven, works in Safari too) ─── */
-.rw {
-  color: hsl(0deg 0% 100% / 18%);
-  background-image: linear-gradient(90deg, #ffffff, #ffffff);
+/* Hero big type: gradient wipe via --p like Apple's headline treatment */
+.wordmark {
+  font-size: clamp(3.2rem, 12vw, 9rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-align: center;
+  margin: 0;
+  color: hsl(0 0% 100% / 8%);
+  background-image: linear-gradient(120deg, #ffffff 0%, #ffffff 55%, rgba(255,255,255,0.35) 100%);
   background-repeat: no-repeat;
-  background-size: 0% 100%;
+  background-size: calc(var(--p, 0) * 130%) 100%;
+  background-position: left;
   -webkit-background-clip: text;
   background-clip: text;
-  /* p goes 0→1 from the rAF hook */
-  background-size: calc(var(--rw-p, 0) * 100%) 100%;
 }
 
-/* keep spaces from clipping oddly inside background-clip */
-.rw:not(:last-child)::after {
-  content: " ";
-  white-space: pre;
+.tagline {
+  margin-top: 1.4rem;
+  font-size: clamp(1.05rem, 2.2vw, 1.5rem);
+  font-weight: 500;
+  color: rgba(245, 245, 247, 0.72);
+  text-align: center;
 }
 
+.scroll-cue {
+  margin-top: 3.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 247, 0.62);
+  text-align: center;
+}
+
+/* Full-viewport hero so the entrance reads like a title card */
 .hero {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 2rem;
 }
 
-.headline {
-  font-size: clamp(2rem, 5.5vw, 3.6rem);
+/* ─── Statement section (Apple-style large lede) ─── */
+.statement {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: calc(18vh) 2rem 10vh;
+}
+
+.lede {
+  font-size: clamp(1.6rem, 3.6vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.42;
+  letter-spacing: -0.015em;
+  color: hsl(0 0% 100% / 10%);
+  background-image: linear-gradient(90deg, #ffffff, #ffffff);
+  background-repeat: no-repeat;
+  background-size: calc(var(--p, 0) * 100%) 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-bottom: 8vh;
+}
+
+/* ─── Pillars: Apple-style minimal cards ─── */
+.pillars {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 6vh 2rem 14vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.pillar {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 22px;
+  padding: 2rem 1.8rem;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.pillar h2 {
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
   font-weight: 700;
-  line-height: 1.3;
   letter-spacing: -0.01em;
-  max-width: 22ch;
+  color: #fff;
+  margin: 0 0 0.6rem;
+}
+
+.pillar p {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: rgba(245, 245, 247, 0.62);
+  margin: 0;
+}
+
+/* ─── Footer ─── */
+.site-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem 2rem 4rem;
+}
+
+.footer-inner {
+  max-width: 68rem;
   margin: 0 auto;
   text-align: center;
 }
 
-.body-copy {
-  max-width: 46rem;
-  margin: 0 auto;
-  padding: 6rem 2rem 2rem;
-}
-
-.body-copy p {
-  font-size: clamp(1.25rem, 2.6vw, 1.8rem);
+.footer-brand {
+  color: #fff;
   font-weight: 600;
-  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
 }
 
-.after-gap {
-  margin-top: 3rem;
+.footer-line {
+  color: rgba(245, 245, 247, 0.55);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.footer-line a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-line a:hover {
+  color: #fff;
+}
+
+.footer-line.dim {
+  margin-top: 1.2rem;
+  color: rgba(245, 245, 247, 0.3);
 }
 
 /* Hide Next.js dev tools toast */
@@ -240,9 +184,23 @@ a:hover {
   display: none !important;
 }
 
-/* Responsive design */
+/* Responsive */
 @media (max-width: 768px) {
-  body {
-    padding: 1rem;
+  .statement,
+  .pillars {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .wordmark,
+  .lede {
+    background-size: 100% 100% !important;
+    color: #fff !important;
   }
 }
