@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Unbounded } from "next/font/google";
 import "./globals.css";
+
+const unbounded = Unbounded({
+  subsets: ["latin"],
+  weight: ["300","400","500","600","700","800"],
+  variable: "--font-unbounded",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,13 +21,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.morrisonjr.com'),
   title: "MORRISON JR | MATEO MORRISON JR",
-  description: "Founded by Mateo Morrison Jr, Morrison Jr is a private investment firm focused on technology, investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity.",
+  description: "A private investment firm investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity.",
   keywords: "Mateo Morrison Jr, Morrison Jr, Morrison Jr, financial technology, investment firm, AI, quantitative finance, cybersecurity",
   authors: [{ name: "Mateo Morrison Jr" }],
   robots: "index, follow",
   openGraph: {
     title: "MORRISON JR | Mateo Morrison Jr",
-    description: "Founded by Mateo Morrison Jr, Morrison Jr in financial technology and global innovation.",
+    description: "A family legacy in financial technology and global innovation.",
     url: "https://www.morrisonjr.com",
     siteName: "Morrison Jr",
     images: [
@@ -38,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "MORRISON JR | Mateo Morrison Jr",
-    description: "Founded by Mateo Morrison Jr, Morrison Jr in financial technology.",
+    description: "A family legacy in financial technology.",
     images: ["/logo.jpg"],
   },
   icons: {
@@ -73,7 +79,7 @@ export default function RootLayout({
                 "@type": "Person",
                 "name": "Mateo Morrison Jr"
               },
-              "foundingDate": "2025",
+              "foundingDate": "2020",
               "description": "A private investment firm focused on technology, investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity.",
               "url": "https://www.morrisonjr.com",
               "logo": "https://morrisonjr.com/logo.jpg",
@@ -98,7 +104,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${unbounded.variable} antialiased`}
         suppressHydrationWarning={true}
       >
        {children}
