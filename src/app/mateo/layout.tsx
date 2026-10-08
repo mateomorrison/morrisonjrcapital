@@ -1,3 +1,5 @@
+import { personJsonLd } from "./schema";
+
 export const metadata = {
   title: "Mateo Morrison Jr — Founder, Investor, Builder",
   description:
@@ -30,5 +32,13 @@ export default function MateoLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
+      {children}
+    </>
+  );
 }
