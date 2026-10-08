@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import SmoothScroll from "@/components/SmoothScroll";
+import Loader from "@/components/Loader";
 
 type Pillar = {
   icon: string;
@@ -59,16 +60,7 @@ export default function Home() {
     const update = () => {
       raf = 0;
       const vh = window.innerHeight;
-      const y = window.scrollY;
-
       // Logo: centered on hero → slides left, pins top-left once content begins
-      const travel = Math.min(1, y / (vh * 0.9));
-      const logo = root.querySelector<HTMLElement>(".travel-logo");
-      if (logo) {
-        logo.style.left = travel < 1 ? `calc(50vw - ${(32 * travel).toFixed(1)}px)` : "2.6rem";
-        logo.style.transform = `translateX(-50%) scale(${(1 - 0.18 * travel).toFixed(3)})`;
-        logo.style.opacity = String(0.35 + 0.65 * travel);
-      }
 
       // Text reveal per element
       root.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
@@ -103,6 +95,7 @@ export default function Home() {
 
   return (
     <SmoothScroll>
+      <Loader />
       <div ref={rootRef}>
         <div className="backdrop" aria-hidden="true">
           <div className="orb orb-a" />
@@ -110,11 +103,13 @@ export default function Home() {
           <div className="grain" />
         </div>
 
-        <div className="travel-logo">
+        <a className="fixed-logo" href="#top" aria-label="Morrison JR">
           <Image src="/logo.jpg" alt="Morrison JR" width={76} height={76} className="logo-img" priority />
-        </div>
+        </a>
 
-        <section className="hero" id="top" />
+        <section className="hero" id="top">
+          <p className="hero-statement">Stealth mode, est. 2020.</p>
+        </section>
 
         {BLOCKS.map((b) => (
           <section className="block" key={b.kicker}>
