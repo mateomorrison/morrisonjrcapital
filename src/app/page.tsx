@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import SmoothScroll from "@/components/SmoothScroll";
 import Loader from "@/components/Loader";
 
@@ -41,6 +41,20 @@ const PILLARS: Pillar[] = [
     ],
   },
 ];
+
+function HeroImage() {
+  const [gone, setGone] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setGone(true), 3500);
+    return () => clearTimeout(t);
+  }, []);
+  if (gone) return null;
+  return (
+    <div className="hero-img" style={{ animation: "heroImgIn 1.4s ease both, heroImgOut 1s ease 2.5s both" }}>
+      <Image src="/pexels-vlada-karpovich-4451713.jpg" alt="" width={900} height={560} priority className="hero-img-file" />
+    </div>
+  );
+}
 
 const BLOCKS = [
   { kicker: "01 — Origins", lines: ["Stealth mode, est. 2020.", "A multi-generational family legacy."] },
@@ -109,6 +123,7 @@ export default function Home() {
 
         <section className="hero" id="top">
           <p className="hero-statement">Stealth mode, est. 2020.</p>
+          <HeroImage />
         </section>
 
         {BLOCKS.map((b) => (

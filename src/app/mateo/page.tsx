@@ -4,18 +4,47 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 const TIMELINE = [
-  { year: "2015", what: "Co-founded fangoo — an e-commerce platform connecting buyers and sellers across the Dominican Republic. Managed payments, logistics, and listings; built and led a team through hundreds of transactions." },
-  { year: "2019", what: "Joined Computers and Structures, Inc. in the San Francisco Bay Area — technical support engineering and software licensing management for one of structural engineering's core software providers." },
-  { year: "2021", what: "Technical Project Manager at Options Technology, New York — technical project delivery and account management inside one of the capital markets industry's critical infrastructure providers." },
-  { year: "2023", what: "Consultant at Tiger Global Management — end-user computing and AI for one of the world's most active investment firms." },
-  { year: "2025", what: "Information Technology & AI at Moore Capital Management — building at the infrastructure layer of a global trading firm, while the studio compounds in parallel." },
-  { year: "Now", what: "Scaling Morrison Jr — a startup studio launching proprietary companies across AI, quantitative finance, and cybersecurity for emerging markets." },
+  {
+    year: "Oct 2015 — Oct 2017",
+    title: "Co-Founder, CEO",
+    org: "fangoo",
+    place: "Dominican Republic",
+    desc: "E-commerce platform connecting buyers and sellers across the Dominican Republic. Managed payments, shipping, and listings; built and led the team through hundreds of completed transactions.",
+  },
+  {
+    year: "Sep 2019 — Sep 2021",
+    title: "Technical Support Engineer, Licensing Support",
+    org: "Engineering software company (structural analysis)",
+    place: "San Francisco Bay Area",
+    desc: "Technical support and software licensing management for a structural engineering software provider.",
+  },
+  {
+    year: "Sep 2021 — Sep 2023",
+    title: "Technical Project Manager, TPM",
+    org: "Capital markets technology provider",
+    place: "New York",
+    desc: "Technical project delivery and account management.",
+  },
+  {
+    year: "Oct 2023 — Oct 2025",
+    title: "Consultant, EUC",
+    org: "Tech VC / public fund crossover firm",
+    place: "New York",
+    desc: "End-user computing and AI.",
+  },
+  {
+    year: "Jan 2025 — Present",
+    title: "Information Technology, AI",
+    org: "Leading global macro fund",
+    place: "New York",
+    desc: "Building at the infrastructure layer of a global trading firm.",
+  },
 ] as const;
 
 const FOCUS = [
-  { icon: "◎", title: "Artificial Intelligence", copy: "Applied intelligence products that compound across industries — not wrappers, not resold APIs." },
-  { icon: "◈", title: "Quantitative Finance", copy: "Systematic strategies grounded in rigorous research and disciplined risk." },
-  { icon: "⬡", title: "Cybersecurity", copy: "The substrate of a digital legacy — offensive tooling and defensive depth." },
+  { icon: "◎", title: "Artificial Intelligence", copy: "Applied intelligence products that compound across industries." },
+  { icon: "◈", title: "Quantitative Finance", copy: "Systematic strategies grounded in rigorous research." },
+  { icon: "⬡", title: "Cybersecurity", copy: "Offensive tooling and defensive depth." },
 ] as const;
 
 function useReveal() {
@@ -57,7 +86,7 @@ export default function Mateo() {
       <a className="fixed-logo-back" href="/" aria-label="← Back">←</a>
 
       <main className="bio">
-        {/* Hero: statement first, mobile-first */}
+        {/* Hero */}
         <header className="bio-hero">
           <h1 data-reveal>Mateo Morrison Jr</h1>
           <p className="bio-statement" data-reveal data-reveal-delay="0.15">
@@ -80,37 +109,45 @@ export default function Mateo() {
           />
         </header>
 
-        {/* Bio */}
-        <section className="bio-section" data-reveal>
-          <p className="bio-lede">
-            I&apos;m a founder, investor, and builder working at the
-            intersection of artificial intelligence, quantitative finance, and
-            cybersecurity. I started building at 16 — co-founding an e-commerce
-            platform in the Dominican Republic while still a teenager — and have
-            spent every year since compounding that craft: infrastructure inside
-            global capital, technical delivery in markets that never close,
-            and now a startup studio of my own.
+        {/* Bio: short factual paragraphs, entity-first phrasing */}
+        <section className="bio-narrative">
+          <p data-reveal>
+            Mateo Morrison Jr (born July 12, 1999) is a founder, investor, and
+            technology builder based in New York. He has been building since
+            2016, and works at the intersection of artificial intelligence,
+            quantitative finance, and cybersecurity.
           </p>
-          <p className="bio-body">
-            My vantage is unusual. I&apos;ve operated inside the
-            machinery of some of the most demanding institutions in the world —
-            global trading firms and funds — from the infrastructure layer up.
-            I&apos;ve experienced firsthand what speeds capital markets move at,
-            where legacy systems strain, and what the next decade of
-            financial technology actually requires.
+          <p data-reveal>
+            He co-founded fangoo — an e-commerce platform connecting buyers and
+            sellers across the Dominican Republic — as a teenager, running
+            payments, logistics, and product listings before leaving to focus on
+            technology infrastructure.
           </p>
-          <p className="bio-body">
-            Morrison Jr — the studio I lead — is the answer to that vantage. We
-            build proprietary companies from scratch: applied AI, quantitative
-            systems, and security tooling, engineered for emerging markets that
-            the incumbents overlook. Quiet, compounding, built to last.
+          <p data-reveal>
+            Since then he has held technical roles across capital markets:
+            software licensing support for structural engineering software in
+            the San Francisco Bay Area, technical project delivery at a capital
+            markets technology provider in New York, end-user computing and AI
+            consulting for a technology venture/public fund crossover firm, and
+            information technology and AI work at a leading global macro fund —
+            where he currently serves.
+          </p>
+          <p data-reveal>
+            In parallel, he leads Morrison Jr, a startup studio est. 2020 that
+            builds proprietary companies from scratch — applied AI, quantitative
+            systems, and security tooling — aimed at emerging markets.
+          </p>
+          <p data-reveal>
+            He is known for hands-on entrepreneurship and a preference for
+            building quietly: long-horizon ventures, engineered from the
+            infrastructure layer up.
           </p>
         </section>
 
         {/* Focus cards */}
         <section className="bio-grid">
           {FOCUS.map((f) => (
-            <div className="pillar" data-reveal key={f.title}>
+            <div className="pillar small" data-reveal key={f.title}>
               <div className="pillar-icon" aria-hidden="true">{f.icon}</div>
               <h2>{f.title}</h2>
               <p>{f.copy}</p>
@@ -119,21 +156,28 @@ export default function Mateo() {
         </section>
 
         {/* Timeline */}
-        <section className="bio-section">
-          <p className="kicker" data-reveal>Trajectory — a decade of building</p>
+        <section className="bio-timeline">
+          <p className="kicker" data-reveal>Trajectory</p>
           <div className="timeline">
             {TIMELINE.map((t) => (
               <div className="timeline-item" data-reveal key={t.year}>
-                <span className="timeline-year">{t.year}</span>
-                <span className="timeline-what">{t.what}</span>
+                <div className="timeline-meta">
+                  <span className="timeline-year">{t.year}</span>
+                  <span className="timeline-place">{t.place}</span>
+                </div>
+                <div className="timeline-body">
+                  <strong className="timeline-title">{t.title}</strong>
+                  <span className="timeline-org">{t.org}</span>
+                  <p className="timeline-desc">{t.desc}</p>
+                </div>
               </div>
             ))}
           </div>
         </section>
 
         {/* Contact */}
-        <section className="bio-section" data-reveal>
-          <p className="bio-lede">Reach me directly.</p>
+        <section className="bio-contact" data-reveal>
+          <p className="bio-lede">Contact</p>
           <a href="mailto:mateo@morrisonjr.org" className="cta-btn">
             mateo@morrisonjr.org
           </a>
