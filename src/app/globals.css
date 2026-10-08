@@ -56,6 +56,12 @@ html.lenis body {
   pointer-events: none;
   background: #000;
 }
+
+/* content wrappers always paint above the backdrop */
+main, section, footer, .bio, [data-reveal] {
+  position: relative;
+  z-index: 1;
+}
 .orb {
   position: absolute;
   border-radius: 50%;
