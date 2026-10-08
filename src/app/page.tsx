@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -42,36 +41,8 @@ const PILLARS: Pillar[] = [
   },
 ];
 
-function PillarCard({ p, idx, open, onToggle }: {
-  p: Pillar; idx: number; open: boolean; onToggle: () => void;
-}) {
-  return (
-    <div
-      className={`pillar expandable ${open ? "open" : ""}`}
-      data-reveal
-      data-reveal-delay={(0.15 * idx).toFixed(2)}
-      onClick={onToggle}
-    >
-      <div className="pillar-head">
-        <div className="pillar-icon" aria-hidden="true">{p.icon}</div>
-        <span className="pillar-chev" aria-hidden="true">{open ? "−" : "+"}</span>
-      </div>
-      <div className="pillar-body-short">
-        <h2>{p.title}</h2>
-        <p>{p.blurb}</p>
-      </div>
-      <div className="pillar-strat" style={{ maxHeight: open ? "none" : "0px" }}>
-        {p.strat.map((s, i) => (
-          <p key={i}>{s}</p>
-        ))}
-        <p className="pillar-foot">Proprietary ventures, built from scratch.</p>
-      </div>
-    </div>
-  );
-}
-
 const BLOCKS = [
-  { kicker: "01 — Origins", lines: ["Built quietly since 2020.", "A multi-generational family legacy."] },
+  { kicker: "01 — Origins", lines: ["Stealth mode, est. 2020.", "A multi-generational family legacy."] },
   { kicker: "02 — The Craft", lines: ["Hands-on entrepreneurship, evolved through the", "transformative core of financial technology."] },
   { kicker: "03 — The Focus", lines: ["Investing at the intersection of artificial intelligence,", "quantitative finance, and cybersecurity."] },
   { kicker: "04 — What's Next", lines: ["A startup studio, launching companies that", "disrupt emerging markets."] },
@@ -79,7 +50,6 @@ const BLOCKS = [
 
 export default function Home() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -90,6 +60,8 @@ export default function Home() {
       raf = 0;
       const vh = window.innerHeight;
       const y = window.scrollY;
+
+      // Logo: centered on hero → slides left, pins top-left once content begins
       const travel = Math.min(1, y / (vh * 0.9));
       const logo = root.querySelector<HTMLElement>(".travel-logo");
       if (logo) {
@@ -97,12 +69,25 @@ export default function Home() {
         logo.style.transform = `translateX(-50%) scale(${(1 - 0.18 * travel).toFixed(3)})`;
         logo.style.opacity = String(0.35 + 0.65 * travel);
       }
+
+      // Text reveal per element
       root.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
         const r = el.getBoundingClientRect();
         const raw = (vh * 0.97 - r.top) / (vh * (0.97 - 0.6));
         const delay = Number(el.dataset.revealDelay ?? 0);
         const p = ease(Math.max(0, Math.min(1, (raw - delay) / (1 - delay))));
         el.style.setProperty("--p", p.toFixed(3));
+      });
+
+      // Auto-expanding pillars: each card expands individually as it scrolls into view
+      // (sequenced bottom-up so the stack unwinds like pages as you move through it)
+      root.querySelectorAll<HTMLElement>(".pillar.expandable").forEach((card) => {
+        const r = card.getBoundingClientRect();
+        // expansion begins when card top passes 80% of viewport, completes by 45%
+        const prog = (vh * 0.8 - r.top) / (vh * 0.35);
+        const e = ease(Math.max(0, Math.min(1, prog)));
+        card.style.setProperty("--exp", e.toFixed(3));
+        card.classList.toggle("open", e > 0.02);
       });
     };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
@@ -142,19 +127,36 @@ export default function Home() {
 
         <section className="pillars">
           {PILLARS.map((p, i) => (
-            <PillarCard
+            <div
+              className="pillar expandable"
+              data-reveal
+              data-reveal-delay={(0.15 * i).toFixed(2)}
               key={p.title}
-              p={p}
-              idx={i}
-              open={openIdx === i}
-              onToggle={() => setOpenIdx(openIdx === i ? null : i)}
-            />
+            >
+              <div className="pillar-head">
+                <div className="pillar-icon" aria-hidden="true">{p.icon}</div>
+              </div>
+              <div className="pillar-body-short">
+                <h2 data-reveal data-reveal-delay="0.1">{p.title}</h2>
+                <p data-reveal data-reveal-delay="0.25">{p.blurb}</p>
+              </div>
+              <div className="pillar-strat">
+                <div>
+                {p.strat.map((s, j) => (
+                  <p key={j} data-reveal data-reveal-delay={(0.35 + j * 0.2).toFixed(2)}>{s}</p>
+                ))}
+                <p className="pillar-foot" data-reveal data-reveal-delay="0.7">
+                  Proprietary ventures, built from scratch.
+                </p>
+                </div>
+              </div>
+            </div>
           ))}
         </section>
 
         <section className="cta-strip">
           <div className="cta-card" data-reveal>
-            <p className="cta-line">Building since 2020.</p>
+            <p className="cta-line">Stealth mode, est. 2020.</p>
             <a href="mailto:General@morrisonjr.com" className="cta-btn"><span>Get in touch</span></a>
           </div>
         </section>
