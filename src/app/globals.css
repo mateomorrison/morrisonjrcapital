@@ -52,7 +52,7 @@ html.lenis body {
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -9999999;
   overflow: hidden;
   pointer-events: none;
   background: #000;
