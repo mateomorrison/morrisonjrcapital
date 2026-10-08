@@ -43,14 +43,22 @@ const PILLARS: Pillar[] = [
 ];
 
 function HeroImage() {
+  const [entered, setEntered] = useState(false);
+  const [fading, setFading] = useState(false);
   const [gone, setGone] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setGone(true), 3500);
-    return () => clearTimeout(t);
+    const t0 = setTimeout(() => setEntered(true), 30);   // allows mount -> fade-in transition
+    const t1 = setTimeout(() => setFading(true), 3000);  // start slow fade
+    const t2 = setTimeout(() => setGone(true), 5500);    // unmount after fade completes
+    return () => { clearTimeout(t0); clearTimeout(t1); clearTimeout(t2); };
   }, []);
   if (gone) return null;
   return (
-    <div className="hero-img" style={{ animation: "heroImgIn 1.4s ease both, heroImgOut 1s ease 2.5s both" }}>
+    <div
+      className="hero-img"
+      data-in={entered || undefined}
+      data-fading={fading || undefined}
+    >
       <Image src="/pexels-vlada-karpovich-4451713.jpg" alt="" width={900} height={560} priority className="hero-img-file" />
     </div>
   );
