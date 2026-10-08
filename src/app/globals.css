@@ -98,15 +98,6 @@ html.lenis body {
   align-items: center;
   padding-top: 10.5rem; /* clears fixed logo */
 }
-.hero-statement {
-  font-family: var(--font-unbounded), 'Unbounded', system-ui, sans-serif;
-  font-size: clamp(1.05rem, 2vw, 1.4rem);
-  font-weight: 400;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(245, 245, 247, 0.85);
-  text-align: center;
-}
 
 /* ─── Statement blocks ─── */
 .block {

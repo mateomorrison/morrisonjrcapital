@@ -43,23 +43,10 @@ const PILLARS: Pillar[] = [
 ];
 
 function HeroImage() {
-  const [entered, setEntered] = useState(false);
-  const [fading, setFading] = useState(false);
-  const [gone, setGone] = useState(false);
-  useEffect(() => {
-    const t0 = setTimeout(() => setEntered(true), 30);   // allows mount -> fade-in transition
-    const t1 = setTimeout(() => setFading(true), 3000);  // start slow fade
-    const t2 = setTimeout(() => setGone(true), 5500);    // unmount after fade completes
-    return () => { clearTimeout(t0); clearTimeout(t1); clearTimeout(t2); };
-  }, []);
-  if (gone) return null;
   return (
-    <div
-      className="hero-img"
-      data-in={entered || undefined}
-      data-fading={fading || undefined}
-    >
-      <Image src="/pexels-vlada-karpovich-4451713.jpg" alt="" width={900} height={560} priority className="hero-img-file" />
+    <div className="hero-img">
+      <div className="hero-img-par" aria-hidden="true" />
+      <Image src="/pexels-vlada-karpovich-4451713.jpg" alt="New York financial district" width={900} height={560} priority className="hero-img-file" />
     </div>
   );
 }
@@ -82,7 +69,21 @@ export default function Home() {
     const update = () => {
       raf = 0;
       const vh = window.innerHeight;
-      // Logo: centered on hero → slides left, pins top-left once content begins
+      const y = window.scrollY;
+
+      // Hero image: parallax drift + slow zoom as you scroll
+      const heroImg = root.querySelector<HTMLElement>(".hero-img-file");
+      const heroImgPar = root.querySelector<HTMLElement>(".hero-img-par");
+      if (heroImg) {
+        const hr = heroImg.getBoundingClientRect();
+        const centerOffset = hr.top + hr.height / 2 - vh / 2; // negative below center
+        const drift = Math.max(-60, Math.min(60, -centerOffset * 0.12));
+        const zoom = 1 + Math.max(0, Math.min(1, 1 - Math.abs(centerOffset) / (vh * 0.9))) * 0.08;
+        heroImg.style.transform = `translateY(${drift.toFixed(1)}px) scale(${zoom.toFixed(3)})`;
+      }
+      if (heroImgPar) {
+        heroImgPar.style.opacity = String(0.25 + 0.35 * Math.min(1, y / (vh * 1.5)));
+      }
 
       // Text reveal per element
       root.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
@@ -130,7 +131,6 @@ export default function Home() {
         </a>
 
         <section className="hero" id="top">
-          <p className="hero-statement">Stealth mode, est. 2020.</p>
           <HeroImage />
         </section>
 
