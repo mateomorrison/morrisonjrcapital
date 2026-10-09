@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ClickSpark } from "@/components/ui/click-spark";
 import { FlipText } from "@/components/ui/flip-text";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import Loader from "@/components/Loader";
 
 type Pillar = {
@@ -180,7 +181,12 @@ export default function Home() {
         <section className="cta-strip">
           <div className="cta-card" data-reveal>
             <p className="cta-line">Est. 2020.</p>
-            <a href="mailto:General@morrisonjr.com" className="cta-btn"><span>Get in touch</span></a>
+            <InteractiveHoverButton
+              className="cta-obsidian"
+              onClick={() => { window.location.href = "mailto:General@morrisonjr.com"; }}
+            >
+              Get in touch
+            </InteractiveHoverButton>
           </div>
         </section>
 
