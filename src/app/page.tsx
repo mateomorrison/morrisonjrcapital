@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import SmoothScroll from "@/components/SmoothScroll";
+import { ClickSpark } from "@/components/ui/click-spark";
+import { FlipText } from "@/components/ui/flip-text";
 import Loader from "@/components/Loader";
 
 type Pillar = {
@@ -52,7 +54,7 @@ function HeroImage() {
 }
 
 const BLOCKS = [
-  { kicker: "01 — Origins", lines: ["Stealth mode, est. 2020.", "A multi-generational family legacy."] },
+  { kicker: "01 — Origins", lines: ["Est. 2020.", "A multi-generational family legacy."] },
   { kicker: "02 — The Craft", lines: ["Hands-on entrepreneurship, evolved through the", "transformative core of financial technology."] },
   { kicker: "03 — The Focus", lines: ["Investing at the intersection of artificial intelligence,", "quantitative finance, and cybersecurity."] },
   { kicker: "04 — What's Next", lines: ["A startup studio, launching companies that", "disrupt emerging markets."] },
@@ -118,6 +120,7 @@ export default function Home() {
 
   return (
     <SmoothScroll>
+      <ClickSpark sparkColor="#ffffff" />
       <Loader />
       <div ref={rootRef}>
         <div className="backdrop" aria-hidden="true">
@@ -136,7 +139,9 @@ export default function Home() {
 
         {BLOCKS.map((b) => (
           <section className="block" key={b.kicker}>
-            <p className="kicker" data-reveal>{b.kicker}</p>
+            <FlipText className="kicker" duration={1.6} loop={false} together={false}>
+              {b.kicker}
+            </FlipText>
             {b.lines.map((l, i) => (
               <p className="block-line" key={i} data-reveal data-reveal-delay={(0.2 + i * 0.25).toFixed(2)}>{l}</p>
             ))}
@@ -174,7 +179,7 @@ export default function Home() {
 
         <section className="cta-strip">
           <div className="cta-card" data-reveal>
-            <p className="cta-line">Stealth mode, est. 2020.</p>
+            <p className="cta-line">Est. 2020.</p>
             <a href="mailto:General@morrisonjr.com" className="cta-btn"><span>Get in touch</span></a>
           </div>
         </section>
