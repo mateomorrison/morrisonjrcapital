@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Unbounded } from "next/font/google";
+import { Geist, Geist_Mono, Unbounded, Figtree } from "next/font/google";
 import "./globals.css";
+import Providers from "./providers";
 
 const unbounded = Unbounded({
   subsets: ["latin"],
   weight: ["300","400","500","600","700","800"],
   variable: "--font-unbounded",
+});
+
+const figtree = Figtree({
+  variable: "--font-figtree",
+  subsets: ["latin"],
 });
 
 const geistSans = Geist({
@@ -20,7 +26,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.morrisonjr.com'),
-  title: "MORRISON JR | MATEO MORRISON JR",
+  title: {
+    default: "Morrison Jr — Startup Studio",
+    template: "%s | Morrison Jr",
+  },
   description: "A private investment firm investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity.",
   keywords: "Mateo Morrison Jr, Morrison Jr, Morrison Jr, financial technology, investment firm, AI, quantitative finance, cybersecurity",
   authors: [{ name: "Mateo Morrison Jr" }],
@@ -104,10 +113,10 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${unbounded.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${figtree.variable} ${unbounded.variable} antialiased overflow-x-hidden`}
         suppressHydrationWarning={true}
       >
-       {children}
+       <Providers>{children}</Providers>
       </body>
     </html>
   );
