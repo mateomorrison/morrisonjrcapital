@@ -1,38 +1,63 @@
-"use client";
+'use client'
+import { type ReactNode, useEffect } from 'react'
+import type Lenis from 'lenis'
 
-import { useEffect } from "react";
-import Lenis from "lenis";
+export function SmoothScroll({ children }: { children: ReactNode }) {
+    useEffect(() => {
+        const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
+        let disposed = false
+        let generation = 0
+        let instance: Lenis | null = null
+        let frame: number | null = null
 
-/** Intentionally slow, buttery smoothing so the site "flows" as you scroll. */
-export default function SmoothScroll({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.35, // higher = slower glide
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
-      smoothWheel: true,
-      wheelMultiplier: 0.85, // slightly damp wheel speed
-      touchMultiplier: 1.1,
-      infinite: false,
-    });
+        const stop = () => {
+            generation++
+            if (frame !== null) cancelAnimationFrame(frame)
+            frame = null
+            instance?.destroy()
+            instance = null
+        }
 
-    let rafId: number;
-    const loop = (time: number) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(loop);
-    };
-    rafId = requestAnimationFrame(loop);
+        const update = async () => {
+            stop()
+            if (disposed || preference.matches) return
+            const currentGeneration = generation
+            try {
+                const LenisClass = (await import('lenis')).default
+                if (disposed || preference.matches || currentGeneration !== generation) return
+                instance = new LenisClass({
+                    duration: 1.5,
+                    easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    orientation: 'vertical',
+                    gestureOrientation: 'vertical',
+                    smoothWheel: true,
+                    wheelMultiplier: 1,
+                    touchMultiplier: 2,
+                    infinite: false,
+                })
 
-    // Push Lenis's eased scroll position into our reveal driver's expectations —
-    // native scroll events still fire because Lenis drives window scroll.
-    return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
-    };
-  }, []);
+                function raf(time: number) {
+                    if (disposed || !instance || currentGeneration !== generation) return
+                    instance.raf(time)
+                    frame = requestAnimationFrame(raf)
+                }
+                frame = requestAnimationFrame(raf)
+            } catch (e) {
+                console.warn('Lenis not available:', e)
+            }
+        }
 
-  return <>{children}</>;
+        void update()
+        preference.addEventListener('change', update)
+
+        return () => {
+            disposed = true
+            preference.removeEventListener('change', update)
+            stop()
+        }
+    }, [])
+
+    return <>{children}</>
 }
+
+export default SmoothScroll

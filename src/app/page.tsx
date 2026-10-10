@@ -6,7 +6,11 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { ClickSpark } from "@/components/ui/click-spark";
 import { FlipText } from "@/components/ui/flip-text";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { RaisedButton } from "@/components/ui/raised-button";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import Loader from "@/components/Loader";
+import { cn } from "@/lib/obsidian-utils";
 
 type Pillar = {
   icon: string;
@@ -45,21 +49,30 @@ const PILLARS: Pillar[] = [
   },
 ];
 
-function HeroImage() {
-  return (
-    <div className="hero-img">
-      <div className="hero-img-par" aria-hidden="true" />
-      <Image src="/pexels-vlada-karpovich-4451713.jpg" alt="New York financial district" width={900} height={560} priority className="hero-img-file" />
-    </div>
-  );
-}
-
 const BLOCKS = [
   { kicker: "01 — Origins", lines: ["Est. 2020.", "A multi-generational family legacy."] },
   { kicker: "02 — The Craft", lines: ["Hands-on entrepreneurship, evolved through the", "transformative core of financial technology."] },
   { kicker: "03 — The Focus", lines: ["Investing at the intersection of artificial intelligence,", "quantitative finance, and cybersecurity."] },
   { kicker: "04 — What's Next", lines: ["A startup studio, launching companies that", "disrupt emerging markets."] },
 ] as const;
+
+const HERO_TAGS = ["Startup Studio", "AI", "Quantitative Finance", "Cybersecurity", "Emerging Markets"] as const;
+
+function HeroImage() {
+  return (
+    <div className="hero-img">
+      <div className="hero-img-par" aria-hidden="true" />
+      <Image
+        src="/pexels-vlada-karpovich-4451713.jpg"
+        alt="New York financial district"
+        width={900}
+        height={560}
+        priority
+        className="hero-img-file"
+      />
+    </div>
+  );
+}
 
 export default function Home() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -79,7 +92,7 @@ export default function Home() {
       const heroImgPar = root.querySelector<HTMLElement>(".hero-img-par");
       if (heroImg) {
         const hr = heroImg.getBoundingClientRect();
-        const centerOffset = hr.top + hr.height / 2 - vh / 2; // negative below center
+        const centerOffset = hr.top + hr.height / 2 - vh / 2;
         const drift = Math.max(-60, Math.min(60, -centerOffset * 0.12));
         const zoom = 1 + Math.max(0, Math.min(1, 1 - Math.abs(centerOffset) / (vh * 0.9))) * 0.08;
         heroImg.style.transform = `translateY(${drift.toFixed(1)}px) scale(${zoom.toFixed(3)})`;
@@ -97,11 +110,9 @@ export default function Home() {
         el.style.setProperty("--p", p.toFixed(3));
       });
 
-      // Auto-expanding pillars: each card expands individually as it scrolls into view
-      // (sequenced bottom-up so the stack unwinds like pages as you move through it)
+      // Auto-expanding pillars
       root.querySelectorAll<HTMLElement>(".pillar.expandable").forEach((card) => {
         const r = card.getBoundingClientRect();
-        // expansion begins when card top passes 80% of viewport, completes by 45%
         const prog = (vh * 0.8 - r.top) / (vh * 0.35);
         const e = ease(Math.max(0, Math.min(1, prog)));
         card.style.setProperty("--exp", e.toFixed(3));
@@ -134,12 +145,35 @@ export default function Home() {
           <Image src="/logo.jpg" alt="Morrison JR" width={76} height={76} className="logo-img" priority />
         </a>
 
-        <section className="hero" id="top">
+        {/* ─── HERO — built on ObsidianUI FlipText + Badge + RaisedButton, over the scroll image ─── */}
+        <section className="hero hero-obsidian" id="top">
+          <div className="hero-stack">
+            <div />
+            <FlipText className="hero-headline" duration={2.4} delay={0.2} loop={false} together={false}>
+              Building for tomorrow.
+            </FlipText>
+            <div className="hero-badges">
+              {HERO_TAGS.map((t) => (
+                <Badge key={t} variant="secondary" className="hero-badge">{t}</Badge>
+              ))}
+            </div>
+            <RaisedButton
+              variant="default"
+              color="#ffffff"
+              className="hero-cta"
+              onClick={() => document.getElementById("origins")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              Explore the studio
+              <span aria-hidden="true">↓</span>
+            </RaisedButton>
+          </div>
+        </section>
+        <section className="hero-img-section" aria-hidden="false">
           <HeroImage />
         </section>
 
-        {BLOCKS.map((b) => (
-          <section className="block" key={b.kicker}>
+        {BLOCKS.map((b, bi) => (
+          <section className="block" key={b.kicker} id={bi === 0 ? "origins" : undefined}>
             <FlipText className="kicker" duration={1.6} loop={false} together={false}>
               {b.kicker}
             </FlipText>
@@ -149,45 +183,47 @@ export default function Home() {
           </section>
         ))}
 
+        {/* ─── PILLARS — obsidian Cards, auto-expand on scroll ─── */}
         <section className="pillars">
           {PILLARS.map((p, i) => (
-            <div
-              className="pillar expandable"
+            <Card
+              className={cn("pillar expandable obsidian-pillar")}
               data-reveal
               data-reveal-delay={(0.15 * i).toFixed(2)}
               key={p.title}
             >
-              <div className="pillar-head">
+              <CardHeader className="pillar-head">
                 <div className="pillar-icon" aria-hidden="true">{p.icon}</div>
-              </div>
-              <div className="pillar-body-short">
-                <h2 data-reveal data-reveal-delay="0.1">{p.title}</h2>
-                <p data-reveal data-reveal-delay="0.25">{p.blurb}</p>
-              </div>
-              <div className="pillar-strat">
-                <div>
-                {p.strat.map((s, j) => (
-                  <p key={j} data-reveal data-reveal-delay={(0.35 + j * 0.2).toFixed(2)}>{s}</p>
-                ))}
-                <p className="pillar-foot" data-reveal data-reveal-delay="0.7">
-                  Proprietary ventures, built from scratch.
-                </p>
+              </CardHeader>
+              <CardContent className="pillar-content">
+                <CardTitle className="pillar-title">{p.title}</CardTitle>
+                <CardDescription className="pillar-blurb">{p.blurb}</CardDescription>
+                <div className="pillar-strat">
+                  {p.strat.map((s, j) => (
+                    <p key={j} data-reveal data-reveal-delay={(0.35 + j * 0.2).toFixed(2)}>{s}</p>
+                  ))}
+                  <Badge variant="outline" className="pillar-foot-card">
+                    Proprietary ventures — built from scratch
+                  </Badge>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           ))}
         </section>
 
+        {/* ─── CTA — obsidian Column footer + InteractiveHoverButton ─── */}
         <section className="cta-strip">
-          <div className="cta-card" data-reveal>
-            <p className="cta-line">Est. 2020.</p>
-            <InteractiveHoverButton
-              className="cta-obsidian"
-              onClick={() => { window.location.href = "mailto:General@morrisonjr.com"; }}
-            >
-              Get in touch
-            </InteractiveHoverButton>
-          </div>
+          <Card className="cta-card">
+            <CardContent className="cta-flex">
+              <p className="cta-line">Est. 2020.</p>
+              <InteractiveHoverButton
+                className="cta-obsidian"
+                onClick={() => { window.location.href = "mailto:General@morrisonjr.com"; }}
+              >
+                Get in touch
+              </InteractiveHoverButton>
+            </CardContent>
+          </Card>
         </section>
 
         <footer className="site-footer">
