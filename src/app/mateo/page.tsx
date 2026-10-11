@@ -1,12 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const EMAILS = [
-  { label: "Studio", value: "General@morrisonjr.com" },
-  { label: "Personal", value: "mateo@morrisonjr.org" },
-];
+const EMAIL = "mateo@morrisonjr.org";
 
 export default function Mateo() {
   const router = useRouter();
@@ -18,7 +14,7 @@ export default function Mateo() {
         background: "#000",
         color: "#f5f5f7",
         fontFamily: "var(--font-unbounded), system-ui, sans-serif",
-        padding: "5.5rem 1.6rem 4rem",
+        padding: "6rem 1.6rem 4rem",
         maxWidth: "46rem",
         margin: "0 auto",
         lineHeight: 1.85,
@@ -46,93 +42,55 @@ export default function Mateo() {
         ← Back
       </button>
 
-      <header style={{ textAlign: "center", marginBottom: "3rem" }}>
-        <Image
-          src="/logo.jpg"
-          alt="Morrison Jr logo"
-          width={72}
-          height={72}
-          priority
-          style={{ borderRadius: "18px", margin: "0 auto 1.2rem", display: "block" }}
-        />
-        <h1 style={{ fontSize: "clamp(1.8rem, 5vw, 3rem)", fontWeight: 800, margin: 0, lineHeight: 1.15 }}>
-          Mateo Morrison Jr
-        </h1>
-        <p
-          style={{
-            margin: "0.5rem 0 0",
-            fontSize: "0.7rem",
-            letterSpacing: "0.35em",
-            textTransform: "uppercase",
-            color: "#9aa0a6",
-          }}
-        >
-          Tech Builder
-        </p>
-        <p style={{ margin: "0.9rem 0 0", fontSize: "0.75rem", color: "#767b81" }}>
-          New York · Born July 12, 1999 · Building since 2016
-        </p>
-      </header>
+      <h1 style={{ fontSize: "clamp(1.8rem, 5vw, 3rem)", fontWeight: 800, margin: 0, lineHeight: 1.15, textAlign: "center" }}>
+        Mateo Morrison Jr
+      </h1>
 
-      <section style={{ color: "#d5d8dc", maxWidth: "38rem", margin: "0 auto" }}>
+      <section style={{ color: "#d5d8dc", maxWidth: "38rem", margin: "3rem auto 0" }}>
         <p data-block>
-          Mateo Morrison Jr (born July 12, 1999) is an American tech builder
-          based in New York. He is the founder of Morrison Jr, a private startup
-          studio established in 2020 that builds proprietary companies from
-          scratch — applied artificial intelligence products, quantitative
-          trading and capital-allocation systems, and cybersecurity tooling —
-          with a focus on emerging markets.
+          A tech builder based in New
+          York. His work is centered on proprietary ventures in artificial
+          intelligence, quantitative finance, and cybersecurity, built for
+          emerging markets.
         </p>
         <p data-block>
           As a teenager he co-founded fangoo (2015–2017), an e-commerce platform
-          connecting buyers and sellers in the Dominican Republic, running
-          payments, logistics, and product listings end to end. Since 2019 he
-          has worked across the technology infrastructure of capital markets —
-          software licensing, technical project delivery, end-user computing
-          and AI consulting, and information technology at a leading global
-          macro fund, where he currently serves.
+          serving the Dominican Republic — running payments, logistics, and
+          product listings end to end while still in high school. Since 2019 he
+          has worked across the technology infrastructure of capital markets:
+          software licensing, technical project delivery for engineering and
+          analytics teams, end-user computing and AI consulting for trading
+          floors, and currently information technology at a leading global
+          macro fund.
         </p>
         <p data-block>
-          His work centers on the intersection of artificial intelligence,
-          quantitative finance, and cybersecurity, built quietly and owned end
-          to end. He publishes selectively while his ventures are in
-          development.
+          His focus is building software and systems end to end — owned,
+          engineered in-house, and shipped quietly. He publishes selectively
+          while his ventures are in development.
         </p>
       </section>
 
       <section
         style={{
-          marginTop: "3rem",
-          display: "flex",
-          flexDirection: "column",
-          gap: "0.9rem",
           maxWidth: "38rem",
           margin: "3rem auto 0",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "1rem",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          paddingBottom: "0.9rem",
         }}
       >
-        {EMAILS.map((e) => (
-          <div
-            key={e.value}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: "1rem",
-              borderBottom: "1px solid rgba(255,255,255,0.08)",
-              paddingBottom: "0.9rem",
-            }}
-          >
-            <span style={{ fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#9aa0a6" }}>
-              {e.label}
-            </span>
-            <a
-              href={`mailto:${e.value}`}
-              style={{ color: "#f5f5f7", textDecoration: "none", fontSize: "0.85rem" }}
-            >
-              {e.value}
-            </a>
-          </div>
-        ))}
+        <span style={{ fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#9aa0a6" }}>
+          Email
+        </span>
+        <a
+          href={`mailto:${EMAIL}`}
+          style={{ color: "#f5f5f7", textDecoration: "none", fontSize: "0.85rem" }}
+        >
+          {EMAIL}
+        </a>
       </section>
 
       <footer
