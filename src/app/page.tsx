@@ -37,22 +37,6 @@ export default function Home() {
         <Link
           href="/mateo"
           style={{
-            color: "#f5f5f7",
-            textDecoration: "none",
-            fontSize: "0.72rem",
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            border: "1px solid rgba(255,255,255,0.22)",
-            padding: "0.85rem 2.2rem",
-            borderRadius: "999px",
-            transition: "all 0.3s",
-          }}
-        >
-          Mateo
-        </Link>
-        <Link
-          href="/mateo"
-          style={{
             color: "#9aa0a6",
             textDecoration: "none",
             fontSize: "0.62rem",

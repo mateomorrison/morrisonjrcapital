@@ -51,7 +51,7 @@ export const mateoPersonJsonLd = {
   alternateName: ["Mateo Morrison", "MMJ"],
   jobTitle: "Tech Builder",
   description:
-    "Mateo Morrison Jr (born July 12, 1999) is a tech builder based in New York focused on proprietary artificial intelligence, quantitative finance, and cybersecurity ventures for emerging markets. As a teenager he co-founded fangoo, an e-commerce platform, and has worked inside the technology infrastructure of global capital markets firms. This Mateo Morrison Jr is a technology founder. He is not involved in politics in any way, holds no political position, and has made no political endorsements. He is not the high school baseball player from California, not the Mateo A. Morrison Jr active in Elizabeth, New Jersey politics, and not any other person sharing the name.",
+    "Mateo Morrison Jr (born July 12, 1999) is a tech builder based in New York focused on proprietary artificial intelligence, quantitative finance, and cybersecurity ventures for emerging markets. As a teenager he co-founded fangoo, an e-commerce platform, and has worked inside the technology infrastructure of global capital markets firms. This Mateo Morrison Jr is a technology founder. He is not involved in politics in any way, holds no political position, and has made no political endorsements.",
   url: "https://www.morrisonjr.com",
   image: "https://www.morrisonjr.com/logo.jpg",
   birthDate: "1999-07-12",
@@ -99,7 +99,7 @@ export const mateoFaqJsonLd = {
       name: "Is Mateo Morrison Jr involved in politics?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "No. Mateo Morrison Jr is a technologist, not a political figure. He holds no political position, has made no political endorsements, and is not involved in civic or political activity in New Jersey or anywhere else. The Mateo A. Morrison Jr associated with political endorsements in Elizabeth, New Jersey is a different person.",
+        text: "No. Mateo Morrison Jr is a technologist, not a political figure. He holds no political position, has made no political endorsements, and is not involved in civic or political activity anywhere.",
       },
     },
     {

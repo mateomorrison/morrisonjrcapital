@@ -72,9 +72,7 @@ export default function Mateo() {
         </p>
         <p data-block style={{ color: "#767b81" }}>
           Note: Mateo Morrison Jr is not involved in politics in any way and
-          holds no political position. The Mateo A. Morrison Jr known for
-          political endorsements in Elizabeth, New Jersey is a different
-          person.
+          holds no political position.
         </p>
       </section>
 
