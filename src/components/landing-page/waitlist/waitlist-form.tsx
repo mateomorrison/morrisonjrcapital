@@ -123,9 +123,9 @@ export default function WaitlistForm({
 
       // Success - user is now on the waitlist
       if (result.alreadyVerified) {
-        toast.info("You're already on the waitlist!");
+        toast.info("Already noted.");
       } else {
-        toast.success("Welcome to the waitlist! 🎉");
+        toast.success("Noted — you're in the room early.");
       }
 
       reset({ email: "" });

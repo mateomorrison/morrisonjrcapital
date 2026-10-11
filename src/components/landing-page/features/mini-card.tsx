@@ -1,43 +1,37 @@
 import React from "react";
 
-interface MiniCardProps {
-  images: string[];
+interface FeatureMiniCardProps {
+  images?: string[];
   rotation?: string;
   title: string;
 }
 
-const MiniCard: React.FC<MiniCardProps> = ({
-  images,
+const FeatureMiniCard: React.FC<FeatureMiniCardProps> = ({
+  images = [],
   rotation = "",
   title,
 }) => {
   return (
     <div
-      className={`p-4 sm:p-6 lg:p-8 xl:p-10 flex flex-col gap-6 sm:gap-8 lg:gap-12 xl:gap-16 h-fit w-full sm:w-1/2 lg:w-1/3 bg-zinc-900/80 rounded-2xl sm:rounded-3xl lg:rounded-4xl border border-zinc-800 shadow-2xl shadow-black ${rotation}`}
+      className={`relative h-[280px] sm:h-[320px] lg:h-[360px] w-full max-w-[300px] ${rotation} border border-zinc-800 rounded-2xl sm:rounded-3xl overflow-hidden bg-[#101012] flex flex-col justify-between p-5 sm:p-6`}
     >
-      <div className="flex flex-wrap gap-2 sm:gap-3">
-        {images.map((img, idx) => {
-          const randomRotation = Math.random() * 20 - 10;
-          return (
-            <img
-              key={idx}
-              src={img}
-              style={{
-                transform: `rotate(${randomRotation}deg)`,
-              }}
-              alt={title || "Mini Card Image"}
-              className="h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 rounded-lg sm:rounded-xl border border-zinc-400 shadow-lg shadow-black rotate-2"
-              loading="lazy"
-            />
-          );
-        })}
+      <div className="absolute inset-0 bg-linear-to-br from-zinc-900/80 via-[#101012] to-black" />
+      <div className="relative z-10 flex flex-col gap-3">
+        {images.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt=""
+            className="h-14 w-14 object-cover rounded-xl opacity-80"
+            loading="lazy"
+          />
+        ))}
       </div>
-
-      <p className="text-lg sm:text-xl lg:text-2xl font-medium text-white leading-tight">
+      <h3 className="relative z-10 text-lg sm:text-xl lg:text-2xl font-medium text-white leading-tight">
         {title}
-      </p>
+      </h3>
     </div>
   );
 };
 
-export default MiniCard;
+export default FeatureMiniCard;

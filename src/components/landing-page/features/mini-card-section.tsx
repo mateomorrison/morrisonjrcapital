@@ -5,28 +5,19 @@ const MiniCardSection: React.FC = () => {
   return (
     <div className="h-fit w-full flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 lg:gap-8 relative -top-12 sm:-top-16 lg:-top-20 xl:-top-24 mb-12 sm:mb-16 lg:mb-20 px-2 sm:px-4">
       <FeatureMiniCard
-        images={[
-          "/images/features/feature11.jpg",
-          "/images/features/feature12.jpg",
-        ]}
+        images={["/logo.jpg"]}
         rotation="rotate-1 sm:rotate-2"
-        title="Launch proprietary ventures the way a studio engineers them"
+        title="Co-founded fangoo as a teenager — an e-commerce platform serving the Dominican Republic"
       />
-
       <FeatureMiniCard
-        images={[
-          "/images/features/feature21.webp",
-          "/images/features/feature22.webp",
-          "/images/features/feature23.png",
-        ]}
+        images={["/logo.jpg"]}
         rotation="-rotate-1 sm:-rotate-3"
-        title="Own systems end to end without borrowing conviction from markets"
+        title="A decade inside the infrastructure of capital markets — from licensing to global macro funds"
       />
-
       <FeatureMiniCard
-        images={["/images/logo/logo-icon.png"]}
+        images={["/logo.jpg"]}
         rotation="rotate-1 sm:rotate-4"
-        title="Build a multi-generational legacy powered by technology"
+        title="Studio est. 2020, building proprietary ventures in stealth, aimed at emerging markets"
       />
     </div>
   );

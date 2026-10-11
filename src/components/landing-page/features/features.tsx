@@ -11,27 +11,31 @@ interface FeatureItem {
   icon: string;
 }
 
-const FEATURES_DATA: FeatureItem[] = [
+const FEATURES_DATA: (FeatureItem & { glyph?: string })[] = [
   {
     title: "Proprietary AI Ventures",
+    glyph: "◎",
     desc: "We build AI products from scratch — thesis-driven, shipped fast, iterating in the market. Decision infrastructure for private capital, agentic workflow tooling, and models that turn unstructured data into an edge.",
     img: "/images/features/bitcoin.png",
     icon: "/images/features/earning.png",
   },
   {
     title: "Systematic Quant Strategies",
+    glyph: "◈",
     desc: "Trading and capital-allocation systems built in-house, owned end to end — compounding across cycles rather than chasing single-market narratives.",
     img: "/images/features/portfolio.png",
     icon: "/images/features/trading.png",
   },
   {
     title: "Emerging-Market Security",
+    glyph: "⬡",
     desc: "Offensive and defensive tooling for mobile-first rails in emerging markets — the gap is the studio’s largest unfair advantage.",
     img: "/images/features/ipo.png",
     icon: "/images/features/rocket.png",
   },
   {
     title: "Research-First, Owned End to End",
+    glyph: "⌁",
     desc: "Every venture earns allocation through out-of-sample evidence, disciplined risk limits, and infrastructure we can audit.",
     img: "/images/features/tbc.png",
     icon: "/images/features/curve.png",

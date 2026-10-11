@@ -1,6 +1,7 @@
 "use client";
 
 import HeroLogos from "./hero-logos";
+import StudioDashboard from "../studio-dashboard/studio-dashboard";
 import { motion } from "motion/react";
 import HeroText from "./hero-text";
 import Link from "next/link";
@@ -61,12 +62,9 @@ const Hero = () => {
           }}
           className="relative"
         >
-          <img
-            src="/images/hero/dashboard.png"
-            alt="Dashboard Interface"
-            className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[700px] rounded-xl relative z-10"
-            loading="eager"
-          />
+          <div className="w-[92%] sm:w-[80%] md:w-[720px] relative z-10">
+            <StudioDashboard />
+          </div>
 
           {/* Glow after reveal */}
           <motion.div
