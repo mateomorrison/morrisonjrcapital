@@ -50,6 +50,19 @@ export default function Home() {
         >
           Mateo
         </Link>
+        <Link
+          href="/mateo"
+          style={{
+            color: "#9aa0a6",
+            textDecoration: "none",
+            fontSize: "0.62rem",
+            letterSpacing: "0.28em",
+            textTransform: "uppercase",
+            transition: "color 0.3s",
+          }}
+        >
+          About Mateo
+        </Link>
       </main>
   );
 }

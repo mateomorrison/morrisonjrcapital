@@ -56,12 +56,14 @@ export default function Mateo() {
         <p data-block>
           As a teenager he co-founded fangoo (2015–2017), an e-commerce platform
           serving the Dominican Republic — running payments, logistics, and
-          product listings end to end while still in high school. Since 2019 he
+          product listings end to end while still in high school.
+        </p>
+        <p data-block>
+          Since 2019 he
           has worked across the technology infrastructure of capital markets:
           software licensing, technical project delivery for engineering and
           analytics teams, end-user computing and AI consulting for trading
-          floors, and currently information technology at a leading global
-          macro fund.
+          floors.
         </p>
         <p data-block>
           His focus is building software and systems end to end — owned,
