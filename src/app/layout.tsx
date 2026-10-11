@@ -1,122 +1,67 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Unbounded, Figtree } from "next/font/google";
+import { Unbounded } from "next/font/google";
 import "./globals.css";
-import Providers from "./providers";
 
 const unbounded = Unbounded({
   subsets: ["latin"],
-  weight: ["300","400","500","600","700","800"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-unbounded",
 });
 
-const figtree = Figtree({
-  variable: "--font-figtree",
-  subsets: ["latin"],
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.morrisonjr.com'),
+  metadataBase: new URL("https://www.morrisonjr.com"),
   title: {
-    default: "Morrison Jr — Startup Studio",
+    default: "Mateo Morrison Jr — Tech Builder | Morrison Jr",
     template: "%s | Morrison Jr",
   },
-  description: "A private investment firm investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity.",
-  keywords: "Mateo Morrison Jr, Morrison Jr, Morrison Jr, financial technology, investment firm, AI, quantitative finance, cybersecurity",
+  description:
+    "Mateo Morrison Jr (born July 12, 1999) is a tech builder from New York — founder of Morrison Jr, a startup studio est. 2020 building proprietary AI, quantitative finance, and cybersecurity ventures for emerging markets. Official site and biography.",
+  keywords:
+    "Mateo Morrison Jr, Morrison Jr, tech builder, startup studio, AI studio, quantitative finance, cybersecurity, emerging markets, fangoo",
   authors: [{ name: "Mateo Morrison Jr" }],
-  robots: "index, follow",
+  creator: "Mateo Morrison Jr",
+  publisher: "Morrison Jr",
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "MORRISON JR | Mateo Morrison Jr",
-    description: "A family legacy in financial technology and global innovation.",
+    type: "website",
+    locale: "en_US",
     url: "https://www.morrisonjr.com",
     siteName: "Morrison Jr",
-    images: [
-      {
-        url: "/logo.jpg",
-        width: 120,
-        height: 120,
-        alt: "Morrison Jr Logo",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
+    title: "Mateo Morrison Jr — Tech Builder",
+    description:
+      "Official site of Mateo Morrison Jr, tech builder and founder of Morrison Jr, a startup studio est. 2020 building proprietary AI, quant, and cybersecurity ventures.",
+    images: [{ url: "/logo.jpg", width: 512, height: 512, alt: "Morrison Jr logo" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MORRISON JR | Mateo Morrison Jr",
-    description: "A family legacy in financial technology.",
+    title: "Mateo Morrison Jr — Tech Builder",
+    description: "Founder of Morrison Jr — a startup studio est. 2020. Tech builder in AI, quant finance, cybersecurity.",
     images: ["/logo.jpg"],
+    creator: "@morrisonjr",
   },
-  icons: {
-    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="black"/></svg>',
-  },
-  alternates: {
-    canonical: "https://wwww.morrisonjr.com",
-  },
-};
-
-export const viewport = {
-  width: 'device-width',
-  initialScale: 1,
+  icons: { icon: "/logo.jpg", shortcut: "/logo.jpg", apple: "/logo.jpg" },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Morrison Jr",
-              "founder": {
-                "@type": "Person",
-                "name": "Mateo Morrison Jr"
-              },
-              "foundingDate": "2020",
-              "description": "A private investment firm focused on technology, investing at the intersection of artificial intelligence, quantitative finance, and cybersecurity.",
-              "url": "https://www.morrisonjr.com",
-              "logo": "https://morrisonjr.com/logo.jpg",
-              "sameAs": [
-                "https://www.linkedin.com/company/morrisonjr",
-                "https://twitter.com/morrisonjr"
-              ],
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Trump Building, 40 Wall Street",
-                "addressLocality": "New York",
-                "addressCountry": "US"
-              },
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "",
-                "email": "General@morrisonjr.com",
-                "contactType": "customer service"
-              }
-            })
-          }}
-        />
-      </head>
+    <html lang="en" className={unbounded.variable}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${figtree.variable} ${unbounded.variable} antialiased overflow-x-hidden`}
         suppressHydrationWarning={true}
+        style={{ background: "#000", margin: 0 }}
       >
-       <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   );
